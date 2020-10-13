@@ -1,17 +1,111 @@
 #include <EEPROM.h>
 #include <GravityTDS.h>
+#include <OneWire.h>
 
 #define SCOUNT  30           // sum of sample point
 
 #define TdsSensorPin A1
 #define TurbPin A0
+#define PhPin A2
+#define Offset 0.00
 
-
+//TDS chip i/o
 GravityTDS gravityTds;
 
-int analogBufferTDS[SCOUNT], analogBufferTurb[SCOUNT];    // store the analog value in the array, read from ADC
-float temperature = 18,tdsValue = 0, medianTDS = 0, medianTurb = 0;
-int analogBufferIndex = 0,copyIndex = 0;
+// store the sensor values in the array
+int analogBufferTDS[SCOUNT], analogBufferTurb[SCOUNT], analogBufferTemp[SCOUNT], analogBufferPH[SCOUNT];  
+float temperature = 18,tdsValue = 0, medianTDS = 0, medianTurb = 0, medianTemp = 0, medianPH = 0;
+int analogBufferIndex = 0,copyIndex = 0,DS18S20_Pin = 2;  
+
+//Temperature chip i/o
+OneWire ds(DS18S20_Pin);
+
+
+void setup()
+{
+    Serial.begin(115200);
+    gravityTds.setPin(TdsSensorPin);
+    gravityTds.setAref(5.0);  //reference voltage on ADC, default 5.0V on Arduino UNO
+    gravityTds.setAdcRange(1024);  //1024 for 10bit ADC;4096 for 12bit ADC
+    gravityTds.begin();  //initialization
+}
+
+void loop()
+{
+   static unsigned long analogSampleTimepoint = millis();
+   
+   if(millis()-analogSampleTimepoint > 40U)     //every 40 milliseconds,read the analog value from the ADC
+   {
+     //Temperature sampling, temperature is also used in TDS adjustment
+     temperature = getTemp();  //add your temperature sensor and read it
+    
+     //TDS sampling
+     gravityTds.setTemperature(temperature);  // set the temperature and execute temperature compensation
+     gravityTds.update();  //sample and calculate
+     tdsValue = gravityTds.getTdsValue();  // then get the value
+
+     //Turbidity sampling
+     int turbValue = analogRead(TurbPin);
+     float turbVoltage = turbValue * (5.0/1024.0);
+
+     //pH Sampling
+     int phSensorValue = analogRead(PhPin);
+     float phVoltage = phSensorValue * (5.0/1024.0);
+     float phValue = 3.5*phVoltage + Offset;
+
+     analogSampleTimepoint = millis();
+     
+     analogBufferTDS[analogBufferIndex] = tdsValue; //read the calibrated value and store into the buffer
+     analogBufferTurb[analogBufferIndex] = turbVoltage;//read the analog voltage and store into the buffer
+     analogBufferTemp[analogBufferIndex] = temperature;//read the digital temperature and store into the buffer
+     analogBufferPH[analogBufferIndex] = phValue;//read the analog offsetted Temperature value
+     
+     analogBufferIndex++;
+     if(analogBufferIndex == SCOUNT) 
+         analogBufferIndex = 0;
+   }
+
+   static unsigned long printTimepoint = millis();
+   
+   if(millis()-printTimepoint > 800U)
+   {
+      //Temperature filtering and printing
+      printTimepoint = millis();
+      medianTemp = getMedianNum(analogBufferTemp, SCOUNT);
+
+      Serial.print("Temperature: ");
+      Serial.print(medianTemp);
+      Serial.println(" Celsius");
+
+      
+      //TDS printing and filtering
+      printTimepoint = millis();
+      medianTDS = getMedianNum(analogBufferTDS,SCOUNT);
+
+      Serial.print("TDS: ");          
+      Serial.print(medianTDS,0);
+      Serial.println(" ppm");
+
+      
+      //Turb filtering and printing
+      printTimepoint = millis();
+      medianTurb = getMedianNum(analogBufferTurb, SCOUNT);
+      
+      Serial.print("Turbidity Voltage: ");
+      Serial.print(medianTurb);
+      Serial.println(" v");
+
+
+      //pH filtering and printing
+      printTimepoint = millis();
+      medianPH = getMedianNum(analogBufferPH, SCOUNT);
+
+      Serial.print("Acidity: ");
+      Serial.print(medianPH);
+      Serial.println(" PH");
+   }
+
+}
 
 
 //Find the median in an array:
@@ -41,62 +135,49 @@ int getMedianNum(int bArray[], int iFilterLen)
 }
 
 
+float getTemp(){
+  //returns the temperature from one DS18S20 in DEG Celsius
 
-void setup()
-{
-    Serial.begin(115200);
-    gravityTds.setPin(TdsSensorPin);
-    gravityTds.setAref(5.0);  //reference voltage on ADC, default 5.0V on Arduino UNO
-    gravityTds.setAdcRange(1024);  //1024 for 10bit ADC;4096 for 12bit ADC
-    gravityTds.begin();  //initialization
-}
+  byte data[12];
+  byte addr[8];
 
-void loop()
-{
-   static unsigned long analogSampleTimepoint = millis();
-   
-   if(millis()-analogSampleTimepoint > 40U)     //every 40 milliseconds,read the analog value from the ADC
-   {
-    
-     //temperature = readTemperature();  //add your temperature sensor and read it
+  if ( !ds.search(addr)) {
+      //no more sensors on chain, reset search
+      ds.reset_search();
+      return -1000;
+  }
 
-     //TDS sampling
-     gravityTds.setTemperature(temperature);  // set the temperature and execute temperature compensation
-     gravityTds.update();  //sample and calculate
-     tdsValue = gravityTds.getTdsValue();  // then get the value
+  if ( OneWire::crc8( addr, 7) != addr[7]) {
+      Serial.println("CRC is not valid!");
+      return -1000;
+  }
 
-     //Turbidity sampling
-     int turbValue = analogRead(TurbPin);
-     float turbVoltage = turbValue * (5.0/1024.0);
+  if ( addr[0] != 0x10 && addr[0] != 0x28) {
+      Serial.print("Device is not recognized");
+      return -1000;
+  }
 
-     
-     analogSampleTimepoint = millis();
-     analogBufferTDS[analogBufferIndex] = tdsValue; //read the calibrated value and store into the buffer
-     analogBufferTurb[analogBufferIndex] = turbVoltage; //read the analog voltage and store into the buffer
-     analogBufferIndex++;
-     if(analogBufferIndex == SCOUNT) 
-         analogBufferIndex = 0;
-   }
+  ds.reset();
+  ds.select(addr);
+  ds.write(0x44,1); // start conversion, with parasite power on at the end
 
-   static unsigned long printTimepoint = millis();
-   
-   if(millis()-printTimepoint > 800U)
-   {
-      //TDS printing and filtering
-      printTimepoint = millis();
-      medianTDS = getMedianNum(analogBufferTDS,SCOUNT);
+  byte present = ds.reset();
+  ds.select(addr);    
+  ds.write(0xBE); // Read Scratchpad
 
-      Serial.print("TDS: ");          
-      Serial.print(medianTDS,0);
-      Serial.println(" ppm");
-      
-      //Turb filtering and printing
-      printTimepoint = millis();
-      medianTurb = getMedianNum(analogBufferTurb, SCOUNT);
-      
-      Serial.print("Turbidity Voltage: ");
-      Serial.print(medianTurb);
-      Serial.println(" v");
-   }
+  
+  for (int i = 0; i < 9; i++) { // we need 9 bytes
+    data[i] = ds.read();
+  }
+  
+  ds.reset_search();
+  
+  byte MSB = data[1];
+  byte LSB = data[0];
 
+  float tempRead = ((MSB << 8) | LSB); //using two's compliment
+  float TemperatureSum = tempRead / 16;
+  
+  return TemperatureSum;
+  
 }
