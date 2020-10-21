@@ -75,7 +75,7 @@ void loop()
 
       Serial.print("Temperature: ");
       Serial.print(medianTemp);
-      Serial.println(" Celsius");
+      Serial.print(" Celsius; ");
 
       
       //TDS printing and filtering
@@ -84,7 +84,7 @@ void loop()
 
       Serial.print("TDS: ");          
       Serial.print(medianTDS,0);
-      Serial.println(" ppm");
+      Serial.print(" ppm; ");
 
       
       //Turb filtering and printing
@@ -93,7 +93,7 @@ void loop()
       
       Serial.print("Turbidity Voltage: ");
       Serial.print(medianTurb);
-      Serial.println(" v");
+      Serial.print(" v; ");
 
 
       //pH filtering and printing
@@ -102,7 +102,7 @@ void loop()
 
       Serial.print("Acidity: ");
       Serial.print(medianPH);
-      Serial.println(" PH");
+      Serial.println(" PH; ");
    }
 
 }
