@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_47f17ebb4ac64592ae7b5e63c25e4e38 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+    
+                <style>
+                    .leaflet-image-layer {
+                        /* old android/safari*/
+                        image-rendering: -webkit-optimize-contrast;
+                        image-rendering: crisp-edges; /* safari */
+                        image-rendering: pixelated; /* chrome */
+                        image-rendering: -moz-crisp-edges; /* firefox */
+                        image-rendering: -o-crisp-edges; /* opera */
+                        -ms-interpolation-mode: nearest-neighbor; /* ie */
+                    }
+                </style>
+            
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_47f17ebb4ac64592ae7b5e63c25e4e38" ></div>
+        
+</body>
+<script>    
+    
+            var map_47f17ebb4ac64592ae7b5e63c25e4e38 = L.map(
+                "map_47f17ebb4ac64592ae7b5e63c25e4e38",
+                {
+                    center: [52.000051937587145, 5.0000337818238805],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 16,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_8ac7650ca0a94d34bc3cf7c3fd3373de = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_47f17ebb4ac64592ae7b5e63c25e4e38);
+        
+    
+            var image_overlay_7670a77dfa6c4c9f94d17e4f89b2069c = L.imageOverlay(
+                "data:image/png;base64,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",
+                [[51.996944241475624, 4.996746352528923], [52.002560305856534, 5.003269911018188]],
+                {"opacity": 1}
+            ).addTo(map_47f17ebb4ac64592ae7b5e63c25e4e38);
+        
+</script>
