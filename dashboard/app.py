@@ -16,7 +16,7 @@ from scripts.helpers import load_db3, gdf_builder, interkrige, rasterbuilder, ht
 
 #Set file location names
 rosbagname = "my_test_bag"
-db_loc = os.path.join(os.path.expanduser('~'), rosbagname,rosbagname+"_0.db3")
+db_loc = os.path.join(os.getcwd(), rosbagname , rosbagname+"_0.db3")
 
 gdf = gdf_builder(load_db3(db_loc, rosbagname))
 fig = px.scatter(gdf, y="test", x="timestamp")
@@ -78,7 +78,7 @@ def update_maps(n):
         
     p_html = html_points(gdf = gdf, zoomlvl = 16, out = "points")
    
-    return open('./' + p_html, 'r').read()
+    return open(p_html, 'r').read()
 
 
 @app.callback(Output('map_raster1', 'srcDoc'),
@@ -100,7 +100,7 @@ def update_maps(n):
     
     r4_html = html_raster(gdf = gdf, zoomlvl = 16, rasterloc = rasterbuilder(tds_z, x,y,"Temp"), colormap = "Grey", out = "Temp")
     
-    return open('./' + r1_html, 'r').read(), open('./' + r2_html, 'r').read(), open('./' + r3_html, 'r').read(), open('./' + r4_html, 'r').read()
+    return open( r1_html, 'r').read(), open( r2_html, 'r').read(), open( r3_html, 'r').read(), open(r4_html, 'r').read()
 
 
 

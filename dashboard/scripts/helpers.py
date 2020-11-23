@@ -94,7 +94,7 @@ def rasterbuilder(val, x,y, filename):
     '''
     ## Transform it to rasterdata! via rasterio
     import rasterio
-
+    import os
     #projstrings
 
     rdnew = "+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs ",
@@ -104,7 +104,7 @@ def rasterbuilder(val, x,y, filename):
     transform = rasterio.transform.guard_transform(rasterio.transform.from_bounds(min(x), min(y), max(x), max(y), 100,100))
 
     new_dataset = rasterio.open(
-        "./data/" + filename + ".tif",
+        os.path.join(os.getcwd(),"data" , filename + ".tif"),
         "w",
         driver = "GTiff",
         height = 100,
@@ -118,7 +118,7 @@ def rasterbuilder(val, x,y, filename):
     new_dataset.write(val,1)
     new_dataset.close()
    
-    return "./data/" + filename + ".tif"
+    return os.path.join(os.getcwd(),"data" , filename + ".tif")
 
 def html_points(gdf,zoomlvl,out):
     '''
@@ -149,9 +149,9 @@ def html_points(gdf,zoomlvl,out):
           icon = folium.Icon(color='red', icon='info-sign')
          ).add_to(m) 
 
-    m.save(os.path.join('html_folium', out+ '.html'))
+    m.save(os.path.join(os.getcwd(),"html_folium" , out + ".html"))
        
-    return os.path.join('html_folium', out+ '.html')
+    return os.path.join(os.getcwd(),"html_folium" , out + ".html")
     
 def html_raster(gdf,zoomlvl, rasterloc,colormap,out):
     '''
@@ -199,6 +199,6 @@ def html_raster(gdf,zoomlvl, rasterloc,colormap,out):
     origin='lower',
     colormap = resultcm).add_to(m)
 
-    m.save(os.path.join('html_folium', out+ '.html'))
+    m.save(os.path.join(os.getcwd(),"html_folium" , out + ".html"))
 
-    return os.path.join('html_folium', out+ '.html')
+    return os.path.join(os.getcwd(),"html_folium" , out + ".html")
