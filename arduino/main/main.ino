@@ -17,6 +17,7 @@ float analogBufferTDS[SCOUNT], analogBufferTurb[SCOUNT], analogBufferTemp[SCOUNT
 float temperature = 18.0,tdsValue = 0.0, medianTDS = 0.0,  medianTemp = 0.0, medianPH = 0.0, medianPH_v = 0.0;
 int analogBufferIndex = 0,copyIndex = 0,DS18S20_Pin = 2;  
 
+
 //PH Calibration 
 //m = (ph7 - ph4) / (Vph7 - Vph4)
 const float m = -5.268;
