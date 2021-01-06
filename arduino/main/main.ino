@@ -13,10 +13,18 @@
 GravityTDS gravityTds;
 
 // store the sensor values in the array
-int analogBufferTDS[SCOUNT], analogBufferTurb[SCOUNT], analogBufferTemp[SCOUNT], analogBufferPH[SCOUNT];  
-float temperature = 18,tdsValue = 0, medianTDS = 0, medianTurb = 0, medianTemp = 0, medianPH = 0;
+float analogBufferTDS[SCOUNT], analogBufferTurb[SCOUNT], analogBufferTemp[SCOUNT], analogBufferPH[SCOUNT], analogBufferTurb_v[SCOUNT], analogBufferPH_v[SCOUNT];  
+float temperature = 18.0,tdsValue = 0.0, medianTDS = 0.0,  medianTemp = 0.0, medianPH = 0.0, medianPH_v = 0.0;
 int analogBufferIndex = 0,copyIndex = 0,DS18S20_Pin = 2;  
 
+//PH Calibration 
+//m = (ph7 - ph4) / (Vph7 - Vph4)
+const float m = -5.268;
+
+//Turb calibration
+// tb = (turbhi-turblo)/(vTurbhi - vTurblo)
+const float tb = 303;
+     
 //Temperature chip i/o
 OneWire ds(DS18S20_Pin);
 
@@ -30,10 +38,12 @@ void setup()
     gravityTds.begin();  //initialization
 }
 
-void loop()
+void loop() 
 {
    static unsigned long analogSampleTimepoint = millis();
-   
+   static float turbVoltage, turbNTU, medianTurb, medianTurb_v;
+   static int turbValue;
+      
    if(millis()-analogSampleTimepoint > 40U)     //every 40 milliseconds,read the analog value from the ADC
    {
      //Temperature sampling, temperature is also used in TDS adjustment
@@ -45,20 +55,23 @@ void loop()
      tdsValue = gravityTds.getTdsValue();  // then get the value
 
      //Turbidity sampling
-     int turbValue = analogRead(TurbPin);
-     float turbVoltage = turbValue * (5.0/1024.0);
+     turbValue = analogRead(TurbPin);
+     turbVoltage = turbValue * (5.0/1024.0);
+     turbNTU = -2172.82 + (631.9 * turbVoltage);
 
      //pH Sampling
      int phSensorValue = analogRead(PhPin);
      float phVoltage = phSensorValue * (5.0/1024.0);
-     float phValue = 3.5*phVoltage + Offset;
+     float phValue = 7.78-(2.5 - phVoltage) * m;
 
      analogSampleTimepoint = millis();
      
      analogBufferTDS[analogBufferIndex] = tdsValue; //read the calibrated value and store into the buffer
-     analogBufferTurb[analogBufferIndex] = turbVoltage;//read the analog voltage and store into the buffer
+     analogBufferTurb[analogBufferIndex] = turbNTU;//read the analog voltage and store into the buffer
      analogBufferTemp[analogBufferIndex] = temperature;//read the digital temperature and store into the buffer
      analogBufferPH[analogBufferIndex] = phValue;//read the analog offsetted Temperature value
+     analogBufferPH_v[analogBufferIndex] = phVoltage;
+     analogBufferTurb_v[analogBufferIndex] = turbVoltage;
      
      analogBufferIndex++;
      if(analogBufferIndex == SCOUNT) 
@@ -74,7 +87,7 @@ void loop()
       medianTemp = getMedianNum(analogBufferTemp, SCOUNT);
 
       Serial.print("Temperature: ");
-      Serial.print(medianTemp);
+      Serial.print(medianTemp,3);
       Serial.print(" Celsius; ");
 
       
@@ -90,16 +103,17 @@ void loop()
       //Turb filtering and printing
       printTimepoint = millis();
       medianTurb = getMedianNum(analogBufferTurb, SCOUNT);
+      medianTurb_v = getMedianNum(analogBufferTurb_v,SCOUNT);
       
-      Serial.print("Turbidity Voltage: ");
+      Serial.print("Turbidity: ");
       Serial.print(medianTurb);
-      Serial.print(" v; ");
+      Serial.print(" NTU; ");
 
 
       //pH filtering and printing
       printTimepoint = millis();
       medianPH = getMedianNum(analogBufferPH, SCOUNT);
-
+      medianPH_v = getMedianNum(analogBufferPH_v, SCOUNT);
       Serial.print("Acidity: ");
       Serial.print(medianPH);
       Serial.println(" PH; ");
@@ -109,12 +123,13 @@ void loop()
 
 
 //Find the median in an array:
-int getMedianNum(int bArray[], int iFilterLen) 
+float getMedianNum(float bArray[], int iFilterLen) 
 {
-      int bTab[iFilterLen];
+      float bTab[iFilterLen];
       for (byte i = 0; i<iFilterLen; i++)
       bTab[i] = bArray[i];
-      int i, j, bTemp;
+      int i, j;
+      float bTemp;
       for (j = 0; j < iFilterLen - 1; j++) 
       {
       for (i = 0; i < iFilterLen - j - 1; i++) 
@@ -181,4 +196,3 @@ float getTemp(){
   return TemperatureSum;
   
 }
-

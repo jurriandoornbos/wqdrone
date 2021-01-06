@@ -1,0 +1,10 @@
+Metadata-Version: 1.2
+Name: py-serial-pubsub
+Version: 0.0.1
+Summary: Serial Reading for Arduino @ 115200 baud
+Home-page: UNKNOWN
+Maintainer: Jurrian Doornbos
+Maintainer-email: jurrian.doornbos@wur.nl
+License: Apache License 2.0
+Description: UNKNOWN
+Platform: UNKNOWN

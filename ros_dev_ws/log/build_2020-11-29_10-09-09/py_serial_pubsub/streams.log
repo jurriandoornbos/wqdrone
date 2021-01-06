@@ -1,0 +1,41 @@
+[0.312s] Invoking command in '/home/pop/Documents/wqdrone/ros_dev_ws/py_serial_pubsub': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/py_serial_pubsub build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub --record /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/install.log --single-version-externally-managed
+[0.577s] running egg_info
+[0.577s] creating ../build/py_serial_pubsub/py_serial_pubsub.egg-info
+[0.577s] writing ../build/py_serial_pubsub/py_serial_pubsub.egg-info/PKG-INFO
+[0.578s] writing dependency_links to ../build/py_serial_pubsub/py_serial_pubsub.egg-info/dependency_links.txt
+[0.578s] writing entry points to ../build/py_serial_pubsub/py_serial_pubsub.egg-info/entry_points.txt
+[0.578s] writing requirements to ../build/py_serial_pubsub/py_serial_pubsub.egg-info/requires.txt
+[0.578s] writing top-level names to ../build/py_serial_pubsub/py_serial_pubsub.egg-info/top_level.txt
+[0.583s] writing manifest file '../build/py_serial_pubsub/py_serial_pubsub.egg-info/SOURCES.txt'
+[0.630s] reading manifest file '../build/py_serial_pubsub/py_serial_pubsub.egg-info/SOURCES.txt'
+[0.631s] writing manifest file '../build/py_serial_pubsub/py_serial_pubsub.egg-info/SOURCES.txt'
+[0.631s] running build
+[0.631s] running build_py
+[0.631s] creating /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build
+[0.632s] creating /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build/lib
+[0.632s] creating /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build/lib/py_serial_pubsub
+[0.632s] copying py_serial_pubsub/__init__.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build/lib/py_serial_pubsub
+[0.632s] copying py_serial_pubsub/subscriber_member_function.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build/lib/py_serial_pubsub
+[0.632s] copying py_serial_pubsub/publisher_member_function.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build/lib/py_serial_pubsub
+[0.632s] running install
+[0.634s] running install_lib
+[0.636s] creating /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub
+[0.636s] copying /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build/lib/py_serial_pubsub/__init__.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub
+[0.636s] copying /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build/lib/py_serial_pubsub/subscriber_member_function.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub
+[0.636s] copying /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build/lib/py_serial_pubsub/publisher_member_function.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub
+[0.637s] byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub/__init__.py to __init__.cpython-38.pyc
+[0.639s] byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub/subscriber_member_function.py to subscriber_member_function.cpython-38.pyc
+[0.639s] byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub/publisher_member_function.py to publisher_member_function.cpython-38.pyc
+[0.640s] running install_data
+[0.641s] creating /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/share/ament_index
+[0.641s] creating /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/share/ament_index/resource_index
+[0.641s] creating /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/share/ament_index/resource_index/packages
+[0.641s] copying resource/py_serial_pubsub -> /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/share/ament_index/resource_index/packages
+[0.641s] copying package.xml -> /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/share/py_serial_pubsub
+[0.641s] running install_egg_info
+[0.644s] Copying ../build/py_serial_pubsub/py_serial_pubsub.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub-0.0.1-py3.8.egg-info
+[0.645s] running install_scripts
+[0.669s] Installing listener script to /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/py_serial_pubsub
+[0.669s] Installing talker script to /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/py_serial_pubsub
+[0.669s] writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/install.log'
+[0.699s] Invoked command in '/home/pop/Documents/wqdrone/ros_dev_ws/py_serial_pubsub' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/py_serial_pubsub build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub --record /home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/install.log --single-version-externally-managed
