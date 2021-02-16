@@ -108,7 +108,9 @@ void loop()
       
       Serial.print("Turbidity: ");
       Serial.print(medianTurb);
-      Serial.print(" NTU; ");
+      Serial.print(" NTU // ");
+      Serial.print(medianTurb_v);
+      Serial.print(" volts; ");
 
 
       //pH filtering and printing
@@ -117,7 +119,9 @@ void loop()
       medianPH_v = getMedianNum(analogBufferPH_v, SCOUNT);
       Serial.print("Acidity: ");
       Serial.print(medianPH);
-      Serial.println(" PH; ");
+      Serial.print(" PH // ");
+      Serial.print(medianPH_v);
+      Serial.println(" volts; ");
    }
 
 }

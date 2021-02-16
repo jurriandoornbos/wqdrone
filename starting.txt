@@ -1,0 +1,33 @@
+## ON RPi##
+
+source /opt/ros/foxy/setup.bash
+
+. ros_dev_ws/install/setup.sh
+
+export ROS_DOMAIN_ID=100
+
+ros2 run py_serial_pubsub talker
+
+ros2 bag record /topic
+
+#GPS
+ros_dev_ws/launch/gps_start.py = GPS launch
+
+
+launch file does this:
+gpsd /dev/ttyS0 9600
+ros2 run rclcpp_components component_container
+ros2 component load /ComponentManager gpsd_client gpsd_client:GPSDClientComponent
+ros2 component load /ComponentManager gps_tools gps_tools::UtmOdometryToNavSatFixComponent
+
+
+ros2 topic echo /fix
+
+## On laptop ##
+
+source /opt/ros/foxy/setup.bash
+. ros_dev_ws/install/setup.sh
+export ROS_DOMAIN_ID=100
+ros2 bag record /topic /fix
+
+
