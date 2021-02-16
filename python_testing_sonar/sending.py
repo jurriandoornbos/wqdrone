@@ -18,33 +18,26 @@ def fletcher(line):
 	ch2 ="{:02x}".format(ch2)
 	
 	return (ch1,ch2)
-	
 
 sync1 = "bb"
 sync2 = "55"
 route = "00"
 mode = "12" #could be different (host-device)
-cid = "03"
+cid = "02"
 length = "00"
 payload = ""
 
 #swift manual constructing mode : response, GETTING 0 HOST → DEVICE
 mode = "10000011"
-mode = "83"
+mode = "03"
 
 #for a given payload, calculate the checksum line = input range to be calculated
 checksumrange = route+mode+cid + length + payload
 ch1,ch2 =fletcher(checksumrange)
 
-
 #construct the message
 msg = sync1 + sync2 + route +  mode + cid + length + payload + ch1 + ch2 
-
-mlist = [sync1, sync2 ,route , mode ,cid ,length , payload , ch1 , ch2 ] 
-
 bmsg=bytes.fromhex(msg)
-
 print(msg)
-print(bmsg)
 ser.write(bmsg)
 

@@ -134,7 +134,7 @@ while True:
 	data_raw = ser.read()
 	hexs = data_raw.hex()
 	payload+=hexs
-
+	print(payload)
 	if len(payload)==12:
 		length = int(payload[-2:], 16)
 		payloadmax = len(payload)+length*2+4

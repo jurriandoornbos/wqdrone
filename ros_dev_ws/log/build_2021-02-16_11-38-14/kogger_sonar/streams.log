@@ -1,0 +1,24 @@
+[0.287s] Invoking command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/kogger_sonar': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/kogger_sonar build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/kogger_sonar/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar --record /home/pop/Documents/wqdrone/ros_dev_ws/build/kogger_sonar/install.log --single-version-externally-managed
+[0.515s] running egg_info
+[0.515s] writing ../../build/kogger_sonar/kogger_sonar.egg-info/PKG-INFO
+[0.515s] writing dependency_links to ../../build/kogger_sonar/kogger_sonar.egg-info/dependency_links.txt
+[0.516s] writing entry points to ../../build/kogger_sonar/kogger_sonar.egg-info/entry_points.txt
+[0.516s] writing requirements to ../../build/kogger_sonar/kogger_sonar.egg-info/requires.txt
+[0.516s] writing top-level names to ../../build/kogger_sonar/kogger_sonar.egg-info/top_level.txt
+[0.552s] reading manifest file '../../build/kogger_sonar/kogger_sonar.egg-info/SOURCES.txt'
+[0.553s] writing manifest file '../../build/kogger_sonar/kogger_sonar.egg-info/SOURCES.txt'
+[0.553s] running build
+[0.554s] running build_py
+[0.554s] running install
+[0.555s] running install_lib
+[0.557s] running install_data
+[0.557s] running install_egg_info
+[0.559s] removing '/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages/kogger_sonar-0.0.0-py3.8.egg-info' (and everything under it)
+[0.560s] Copying ../../build/kogger_sonar/kogger_sonar.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages/kogger_sonar-0.0.0-py3.8.egg-info
+[0.560s] running install_scripts
+[0.580s] Installing distance list script to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/kogger_sonar
+[0.580s] Installing distance_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/kogger_sonar
+[0.581s] Installing listento script to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/kogger_sonar
+[0.581s] Installing sendto script to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/kogger_sonar
+[0.581s] writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/kogger_sonar/install.log'
+[0.609s] Invoked command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/kogger_sonar' returned '0': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/kogger_sonar build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/kogger_sonar/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar --record /home/pop/Documents/wqdrone/ros_dev_ws/build/kogger_sonar/install.log --single-version-externally-managed

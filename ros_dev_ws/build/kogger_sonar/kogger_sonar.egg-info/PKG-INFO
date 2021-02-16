@@ -1,0 +1,10 @@
+Metadata-Version: 1.2
+Name: kogger-sonar
+Version: 0.0.0
+Summary: Kogger Sonar package for acquiring depth information via the USB connection
+Home-page: UNKNOWN
+Maintainer: Jurrian Doornbos
+Maintainer-email: jurrian.doornbos@wur.nl
+License: Apache License 2.0
+Description: UNKNOWN
+Platform: UNKNOWN

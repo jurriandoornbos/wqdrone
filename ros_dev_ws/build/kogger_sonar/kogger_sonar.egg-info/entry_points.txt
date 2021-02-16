@@ -1,0 +1,6 @@
+[console_scripts]
+distance list = kogger_sonar.kogger_distance_list:main
+distance_send = kogger_sonar.kogger_distance_send:main
+listento = kogger_sonar.listentokogger:main
+sendto = kogger_sonar.sendtokogger:main
+
