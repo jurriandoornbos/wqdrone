@@ -1,0 +1,38 @@
+[0.286s] Invoking command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/teensy': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teensy build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy --record /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/install.log --single-version-externally-managed
+[0.530s] running egg_info
+[0.531s] creating ../../build/teensy/teensy.egg-info
+[0.531s] writing ../../build/teensy/teensy.egg-info/PKG-INFO
+[0.531s] writing dependency_links to ../../build/teensy/teensy.egg-info/dependency_links.txt
+[0.531s] writing entry points to ../../build/teensy/teensy.egg-info/entry_points.txt
+[0.532s] writing requirements to ../../build/teensy/teensy.egg-info/requires.txt
+[0.532s] writing top-level names to ../../build/teensy/teensy.egg-info/top_level.txt
+[0.536s] writing manifest file '../../build/teensy/teensy.egg-info/SOURCES.txt'
+[0.578s] reading manifest file '../../build/teensy/teensy.egg-info/SOURCES.txt'
+[0.579s] writing manifest file '../../build/teensy/teensy.egg-info/SOURCES.txt'
+[0.579s] running build
+[0.579s] running build_py
+[0.579s] creating /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build
+[0.579s] creating /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib
+[0.579s] creating /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib/teensy
+[0.579s] copying teensy/__init__.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib/teensy
+[0.580s] copying teensy/teensy_pub.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib/teensy
+[0.580s] running install
+[0.581s] running install_lib
+[0.583s] creating /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy
+[0.583s] copying /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib/teensy/__init__.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy
+[0.583s] copying /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib/teensy/teensy_pub.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy
+[0.583s] byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy/__init__.py to __init__.cpython-38.pyc
+[0.585s] byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy/teensy_pub.py to teensy_pub.cpython-38.pyc
+[0.585s] Sorry: TabError: inconsistent use of tabs and spaces in indentation (teensy_pub.py, line 26)
+[0.585s] running install_data
+[0.586s] creating /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/share/ament_index
+[0.586s] creating /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/share/ament_index/resource_index
+[0.586s] creating /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/share/ament_index/resource_index/packages
+[0.586s] copying resource/teensy -> /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/share/ament_index/resource_index/packages
+[0.587s] copying package.xml -> /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/share/teensy
+[0.587s] running install_egg_info
+[0.589s] Copying ../../build/teensy/teensy.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy-0.0.0-py3.8.egg-info
+[0.590s] running install_scripts
+[0.613s] Installing teensy_pub script to /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/teensy
+[0.613s] writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/install.log'
+[0.644s] Invoked command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/teensy' returned '0': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teensy build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy --record /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/install.log --single-version-externally-managed

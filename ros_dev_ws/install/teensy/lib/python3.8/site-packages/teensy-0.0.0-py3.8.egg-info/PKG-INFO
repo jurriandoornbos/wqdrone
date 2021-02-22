@@ -1,0 +1,10 @@
+Metadata-Version: 1.2
+Name: teensy
+Version: 0.0.0
+Summary: Acquiring Teensy data and publish on two nodes
+Home-page: UNKNOWN
+Maintainer: Jurrian Doornbos
+Maintainer-email: jurrian.doornbos@wur.nl
+License: Apache License 2.0
+Description: UNKNOWN
+Platform: UNKNOWN

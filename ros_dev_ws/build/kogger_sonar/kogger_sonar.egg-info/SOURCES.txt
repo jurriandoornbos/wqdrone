@@ -10,7 +10,7 @@ setup.py
 ../../build/kogger_sonar/kogger_sonar.egg-info/zip-safe
 kogger_sonar/__init__.py
 kogger_sonar/kogger_distance_list.py
-kogger_sonar/kogger_distance_send.py
+kogger_sonar/kogger_distance_rec.py
 kogger_sonar/listentokogger.py
 kogger_sonar/sendtokogger.py
 resource/kogger_sonar

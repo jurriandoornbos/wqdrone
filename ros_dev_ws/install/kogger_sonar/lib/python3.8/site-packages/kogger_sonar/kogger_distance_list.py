@@ -7,7 +7,7 @@ from std_msgs.msg import UInt32
 class MinimalSubscriber(Node):
 
     def __init__(self):
-        super().__init__('minimal_subscriber')
+        super().__init__('sonar_distance_subscriber')
         self.subscription = self.create_subscription(
             UInt32,
             'sonar_dist',

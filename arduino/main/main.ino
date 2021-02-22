@@ -87,7 +87,7 @@ void loop()
       printTimepoint = millis();
       medianTemp = getMedianNum(analogBufferTemp, SCOUNT);
 
-      Serial.print("Temperature: ");
+      Serial.print("<Temperature: ");
       Serial.print(medianTemp,3);
       Serial.print(" Celsius; ");
 
@@ -110,7 +110,7 @@ void loop()
       Serial.print(medianTurb);
       Serial.print(" NTU // ");
       Serial.print(medianTurb_v);
-      Serial.print(" volts; ");
+      Serial.print(" TURB_volts; ");
 
 
       //pH filtering and printing
@@ -121,7 +121,8 @@ void loop()
       Serial.print(medianPH);
       Serial.print(" PH // ");
       Serial.print(medianPH_v);
-      Serial.println(" volts; ");
+      Serial.print(" PH_volts; ");
+      Serial.println(">");
    }
 
 }
@@ -168,12 +169,12 @@ float getTemp(){
   }
 
   if ( OneWire::crc8( addr, 7) != addr[7]) {
-      Serial.println("CRC is not valid!");
+      //Serial.println("CRC is not valid!");
       return -1000;
   }
 
   if ( addr[0] != 0x10 && addr[0] != 0x28) {
-      Serial.print("Device is not recognized");
+      //Serial.print("Device is not recognized");
       return -1000;
   }
 

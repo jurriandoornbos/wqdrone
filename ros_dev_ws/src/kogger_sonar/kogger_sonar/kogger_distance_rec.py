@@ -9,7 +9,7 @@ ser = serial.Serial("/dev/ttyUSB0", 115200)
 class MinimalPublisher(Node):
 
     def __init__(self):
-        super().__init__('minimal_publisher')
+        super().__init__('sonar_distance_receiver')
         self.publisher_ = self.create_publisher(UInt32, 'sonar_dist', 10)
         timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)

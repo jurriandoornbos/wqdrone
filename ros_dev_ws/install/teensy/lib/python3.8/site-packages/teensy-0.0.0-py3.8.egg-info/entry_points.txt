@@ -1,0 +1,5 @@
+[console_scripts]
+gps = teensy.gps:main
+sensor = teensy.sensor:main
+teensy_pub = teensy.teensy_pub:main
+

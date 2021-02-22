@@ -20,10 +20,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'sendto = kogger_sonar.sendtokogger:main',
-        'listento = kogger_sonar.listentokogger:main',
-        'distance_send = kogger_sonar.kogger_distance_send:main',
-        'distance list = kogger_sonar.kogger_distance_list:main',
+        'cmd_send = kogger_sonar.sendtokogger:main',
+        'cmd_print = kogger_sonar.listentokogger:main',
+        'rec_distance = kogger_sonar.kogger_distance_rec:main',
+        'list_distance = kogger_sonar.kogger_distance_list:main',
         ],
     },
 )

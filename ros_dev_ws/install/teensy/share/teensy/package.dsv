@@ -1,0 +1,6 @@
+source;share/teensy/hook/pythonpath.ps1
+source;share/teensy/hook/pythonpath.dsv
+source;share/teensy/hook/pythonpath.sh
+source;share/teensy/hook/ament_prefix_path.ps1
+source;share/teensy/hook/ament_prefix_path.dsv
+source;share/teensy/hook/ament_prefix_path.sh

@@ -1,0 +1,25 @@
+[0.296s] Invoking command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/teensy': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teensy build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy --record /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/install.log --single-version-externally-managed
+[0.540s] running egg_info
+[0.540s] writing ../../build/teensy/teensy.egg-info/PKG-INFO
+[0.541s] writing dependency_links to ../../build/teensy/teensy.egg-info/dependency_links.txt
+[0.541s] writing entry points to ../../build/teensy/teensy.egg-info/entry_points.txt
+[0.541s] writing requirements to ../../build/teensy/teensy.egg-info/requires.txt
+[0.541s] writing top-level names to ../../build/teensy/teensy.egg-info/top_level.txt
+[0.577s] reading manifest file '../../build/teensy/teensy.egg-info/SOURCES.txt'
+[0.578s] writing manifest file '../../build/teensy/teensy.egg-info/SOURCES.txt'
+[0.578s] running build
+[0.578s] running build_py
+[0.578s] copying teensy/teensy_pub.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib/teensy
+[0.579s] running install
+[0.580s] running install_lib
+[0.581s] copying /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib/teensy/teensy_pub.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy
+[0.581s] byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy/teensy_pub.py to teensy_pub.cpython-38.pyc
+[0.583s] running install_data
+[0.584s] running install_egg_info
+[0.586s] removing '/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy-0.0.0-py3.8.egg-info' (and everything under it)
+[0.586s] Copying ../../build/teensy/teensy.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy-0.0.0-py3.8.egg-info
+[0.587s] running install_scripts
+[0.606s] Installing gps script to /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/teensy
+[0.606s] Installing teensy_pub script to /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/teensy
+[0.607s] writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/install.log'
+[0.636s] Invoked command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/teensy' returned '0': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/teensy build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy --record /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/install.log --single-version-externally-managed
