@@ -1,51 +1,69 @@
-def load_db3(db_loc,rosbagname):
-    '''
-    db_loc = string of b3 file locations
-    rosbagname = name of the rosbag
-    
-    returns df
-    '''
-    #SCP DATA import from db3 file created w/ ROS2 bag
-    import os
-    import pandas as pd
+def load_db3(db_loc):
     import sqlite3
+    import pandas as pd
+    import numpy as np
+    
+    def uint32(byt):
+        l = 4
+        return int.from_bytes(byt[-l:],"little")
 
-    def load_data(path):
-        con = sqlite3.connect(path)
-        return pd.read_sql_query("SELECT * from messages", con)
+    def wq_float64(byt):
+            return np.frombuffer(byt[4:],dtype = np.float64)[2:]
 
-    df = load_data(db_loc)
+    def gps_float64(byt):
+            d = np.frombuffer(byt[20:-4],dtype = np.float64)[:3]
+            if d.size <3:
+                d = [np.nan,np.nan,np.nan] # to stop erroring for no fix gps 0.0.0
+            return d
 
-    #Regex method to convert all the byte strings to data
-    df["decode"] = df["data"].str.decode("utf-8")
-    #regex string to pick all the numbers after "Sensor: " creating a new dataframe
-    df2 = df["decode"].str.extract("Temperature:\s([\-0-9\.]+).*TDS:\s([\-0-9\.]+).*Voltage:\s([\-0-9\.]+).*Acidity:\s([\-0-9\.]+)",expand = True)
-    #rename the columns
-    df2.columns = ["temp","tds","turb","ph"]
-    #convert to floats
-    df2 = df2[df2.columns].apply(pd.to_numeric)
-    #add the timestamp list
-    df2["timestamp"] = df["timestamp"]
-    return df2
+    con = sqlite3.connect(db_loc)
+    topics = pd.read_sql("SELECT * from topics", con)
+    msgs = pd.read_sql("SELECT * from messages", con)
+
+    dist_id = topics.id[topics["name"].str.contains("sonar_dist")]
+    gps_id = topics.id[topics["name"].str.contains("teensy_fix")]
+    sensor_id = topics.id[topics["name"].str.contains("wq_sensors")]
+
+    df= msgs.loc[msgs["topic_id"].isin([dist_id,gps_id,sensor_id])].reset_index()
+
+
+    #Preprocess data from the sonar from bytearrat to individual column
+    distdf = msgs.loc[msgs["topic_id"].isin(dist_id)].reset_index()
+    distdf["distance"] = distdf["data"].apply(uint32)
+    distdf = distdf.drop("data",1)
+
+
+    #Preprocess data of the gps from bytearrays to individual columns gpdf
+    gcols = ["lat", "lon", "alt"]
+    gpsdf = msgs.loc[msgs["topic_id"].isin(gps_id)].reset_index()
+    gpsdf["latlonalt"]= gpsdf["data"].apply(gps_float64)
+
+    gpdf = pd.DataFrame(gpsdf["latlonalt"].to_list(), columns = gcols)
+    gpdf["timestamp"]  = gpsdf["timestamp"]
+    gpdf["topic_id"] = gpsdf["topic_id"]
+
+    #Preprocess data of the sensors from bytearrays to individual columns to sdf
+    cols = ["temp","tds","turb","t_v","ph","ph_v"]
+    sensordf = msgs.loc[msgs["topic_id"].isin(sensor_id)].reset_index()
+    sensordf["info"] = sensordf["data"].apply(wq_float64)
+
+    sdf = pd.DataFrame(sensordf["info"].to_list(),columns = cols)
+    sdf["timestamp"] = sensordf["timestamp"]
+    sdf["topic_id"] = sensordf["topic_id"]
+    
+    # and remerge the dataset back to a nice, tidy DF    
+    df = pd.merge_asof(distdf,gpdf, on = "timestamp")
+    df = pd.merge_asof(df, sdf, on = "timestamp").dropna()
+    
+    return df
 
 
 def gdf_builder(df):
+    import geopandas as gpd
     '''
     Creates "test" with some random data
     df = Pandas Dataframe with sensor observations
-    returns gdf
     '''
-    
-    import numpy as np
-    import geopandas as gpd
-
-    #Create fake Lat and Long data
-    df["lat"] = (np.random.standard_normal(len(df))/1000)+52
-    df["lon"] = (np.random.standard_normal(len(df))/1000)+5
-
-    #create some fake test data as well
-    df["test"] = np.random.rand(len(df))
-
     #create gdf to convert WGS84 to UTM
     gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lon, df.lat), crs = "EPSG:4326")
     return(gdf)

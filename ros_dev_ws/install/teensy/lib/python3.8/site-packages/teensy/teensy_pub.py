@@ -1,8 +1,9 @@
 import rclpy
 import serial
+import re
 from rclpy.node import Node
 
-from std_msgs.msg import String
+from std_msgs.msg import Float64MultiArray
 
 from sensor_msgs.msg import NavSatFix
 
@@ -26,7 +27,7 @@ class GPSPublisher(Node):
         def splitter(item):
             begin  = item[:-7]
             end = item[-7:]
-            s = begin + "." +end
+            s = "0"+begin + "." +end
             f = float(s)
             return f
             
@@ -60,25 +61,32 @@ class GPSPublisher(Node):
             self.gps_publisher_.publish(nav_msg)
             self.get_logger().info("Lat: %f"%nav_msg.latitude +" Lon: %f" % nav_msg.longitude)
 
-
+'''
+The sensor publisher acquires the data and presents a list with the following order:
+[Temperature, TDS, Turbidity, Turbidity voltage, Acidity, Acidity voltage]
+'''
 class SensorPublisher(Node):
 
     def __init__(self):
         super().__init__('sensor_publisher')
-        self.sensor_publisher_ = self.create_publisher(String, 'wq_sensors', 10)
+        self.sensor_publisher_ = self.create_publisher(Float64MultiArray, 'wq_sensors', 10)
         timer_period = 1 # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
  
     def timer_callback(self):
         line = ser.readline()
         line = line.decode("utf-8")
-        
+        regex = r'([\-0-9\.]+).*\s([\-0-9\.]+).*Turbidity:\s([\-0-9\.]+).*\s([\-0-9\.]+).*\s([\-0-9\.]+).*\/\s([\-0-9\.]+).'
+
         begin = line[0:3]
         if begin == "<Te":
-            msg = String()
-            msg.data = line[1:-1]
+            t = re.findall(regex,line)[0]
+          
+            t = [float(item)for item in t]           
+            msg = Float64MultiArray()
+            msg.data = t
             self.sensor_publisher_.publish(msg)
-            self.get_logger().info(msg.data)
+            self.get_logger().info(str(msg.data))
         
         
 def main(args=None):

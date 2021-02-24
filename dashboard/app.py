@@ -15,11 +15,11 @@ import os
 from scripts.helpers import load_db3, gdf_builder, interkrige, rasterbuilder, html_points, html_raster
 
 #Set file location names
-rosbagname = "my_test_bag"
-db_loc = os.path.join(os.getcwd(), rosbagname , rosbagname+"_0.db3")
+rosbagname = "laptoptest"
+db_loc = os.path.join(os.path.expanduser('~'), rosbagname , rosbagname+"_0.db3")
 
-gdf = gdf_builder(load_db3(db_loc, rosbagname))
-fig = px.scatter(gdf, y="test", x="timestamp")
+gdf = gdf_builder(load_db3(db_loc))
+fig = px.scatter(gdf, y="distance", x="timestamp")
 
 #app thingymajigz
 app = dash.Dash(__name__)
@@ -44,7 +44,7 @@ app.layout = html.Div(children=[
                                            ]),  # Define the middle elements
                                     html.Div(className='four columns div-for-charts bg-grey',
                                            children = [
-                                                html.P('''TDS'''),
+                                                html.P('''Depth'''),
                                                html.Iframe(id = "map_raster1", srcDoc = open("./html_folium/test_raster.html","r").read(),width = "100%", height = "25%"),
                                                html.P('''Turbidity'''),
                                                html.Iframe(id = "map_raster2", srcDoc = open("./html_folium/test_raster.html","r").read(),width = "100%", height = "25%"),
@@ -63,8 +63,8 @@ app.layout = html.Div(children=[
              [Input('interval-plots', 'n_intervals')])
 
 def update_plots(n):
-    gdf = gdf_builder(load_db3(db_loc, rosbagname))
-    fig = px.scatter(gdf, y="test", x="timestamp")
+    gdf = gdf_builder(load_db3(db_loc))
+    fig = px.scatter(gdf, y="distance", x="timestamp")
     return fig
 
 
@@ -74,9 +74,9 @@ def update_plots(n):
 
 
 def update_maps(n):
-    gdf = gdf_builder(load_db3(db_loc, rosbagname))
+    gdf = gdf_builder(load_db3(db_loc))
         
-    p_html = html_points(gdf = gdf, zoomlvl = 16, out = "points")
+    p_html = html_points(gdf = gdf, zoomlvl = 18, out = "points")
    
     return open(p_html, 'r').read()
 
@@ -88,17 +88,20 @@ def update_maps(n):
               [Input('interval-maps2', 'n_intervals')])
 
 def update_maps(n):
-    gdf = gdf_builder(load_db3(db_loc, rosbagname))
+    gdf = gdf_builder(load_db3(db_loc))
     
-    tds_z, tds_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["test"], res=int(round(len(gdf)/10,0)))
+    dist_z, dist_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["distance"], res=int(round(len(gdf)/10,0)))
+    temp_z, temp_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["temp"], res=int(round(len(gdf)/10,0)))
+    ph_z, ph_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["ph"], res=int(round(len(gdf)/10,0)))
+    turb_z, turb_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["turb"], res=int(round(len(gdf)/10,0)))
         
-    r1_html = html_raster(gdf = gdf, zoomlvl = 16, rasterloc = rasterbuilder(tds_z, x,y,"TDS"), colormap = "Green", out = "Temp")
+    r1_html = html_raster(gdf = gdf, zoomlvl = 18, rasterloc = rasterbuilder(dist_z, x,y,"depth"), colormap = "Green", out = "depth")
     
-    r2_html = html_raster(gdf = gdf, zoomlvl = 16, rasterloc = rasterbuilder(tds_z, x,y,"Turbidity"), colormap = "Blue", out = "Turb")
+    r2_html = html_raster(gdf = gdf, zoomlvl = 18, rasterloc = rasterbuilder(turb_z, x,y,"Turbidity"), colormap = "Blue", out = "Turb")
     
-    r3_html = html_raster(gdf = gdf, zoomlvl = 16, rasterloc = rasterbuilder(tds_z, x,y,"ph"), colormap = "Red", out = "ph")
+    r3_html = html_raster(gdf = gdf, zoomlvl = 18, rasterloc = rasterbuilder(ph_z, x,y,"pH"), colormap = "Red", out = "ph")
     
-    r4_html = html_raster(gdf = gdf, zoomlvl = 16, rasterloc = rasterbuilder(tds_z, x,y,"Temp"), colormap = "Grey", out = "Temp")
+    r4_html = html_raster(gdf = gdf, zoomlvl = 18, rasterloc = rasterbuilder(t_z, x,y,"Temp"), colormap = "Grey", out = "Temp")
     
     return open( r1_html, 'r').read(), open( r2_html, 'r').read(), open( r3_html, 'r').read(), open(r4_html, 'r').read()
 

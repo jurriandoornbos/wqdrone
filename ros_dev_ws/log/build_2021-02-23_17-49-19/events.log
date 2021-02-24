@@ -1,0 +1,161 @@
+[0.000000] (-) TimerEvent: {}
+[0.000777] (kogger_sonar) JobQueued: {'identifier': 'kogger_sonar', 'dependencies': OrderedDict()}
+[0.001070] (py_serial_pubsub) JobQueued: {'identifier': 'py_serial_pubsub', 'dependencies': OrderedDict()}
+[0.001250] (teensy) JobQueued: {'identifier': 'teensy', 'dependencies': OrderedDict()}
+[0.001401] (kogger_sonar) JobStarted: {'identifier': 'kogger_sonar'}
+[0.092700] (py_serial_pubsub) JobStarted: {'identifier': 'py_serial_pubsub'}
+[0.101321] (-) TimerEvent: {}
+[0.181620] (teensy) JobStarted: {'identifier': 'teensy'}
+[0.201880] (-) TimerEvent: {}
+[0.304241] (-) TimerEvent: {}
+[0.406762] (-) TimerEvent: {}
+[0.507906] (-) TimerEvent: {}
+[0.609402] (-) TimerEvent: {}
+[0.710575] (-) TimerEvent: {}
+[0.811899] (-) TimerEvent: {}
+[0.913008] (-) TimerEvent: {}
+[1.014182] (-) TimerEvent: {}
+[1.115303] (-) TimerEvent: {}
+[1.216394] (-) TimerEvent: {}
+[1.317507] (-) TimerEvent: {}
+[1.418631] (-) TimerEvent: {}
+[1.519701] (-) TimerEvent: {}
+[1.620842] (-) TimerEvent: {}
+[1.722360] (-) TimerEvent: {}
+[1.827950] (-) TimerEvent: {}
+[1.930530] (-) TimerEvent: {}
+[2.031832] (-) TimerEvent: {}
+[2.133127] (-) TimerEvent: {}
+[2.234441] (-) TimerEvent: {}
+[2.335685] (-) TimerEvent: {}
+[2.437023] (-) TimerEvent: {}
+[2.538461] (-) TimerEvent: {}
+[2.639689] (-) TimerEvent: {}
+[2.741025] (-) TimerEvent: {}
+[2.842402] (-) TimerEvent: {}
+[2.943671] (-) TimerEvent: {}
+[3.044936] (-) TimerEvent: {}
+[3.146233] (-) TimerEvent: {}
+[3.247688] (-) TimerEvent: {}
+[3.349768] (-) TimerEvent: {}
+[3.452233] (-) TimerEvent: {}
+[3.554399] (-) TimerEvent: {}
+[3.655483] (-) TimerEvent: {}
+[3.756568] (-) TimerEvent: {}
+[3.857721] (-) TimerEvent: {}
+[3.958932] (-) TimerEvent: {}
+[4.060035] (-) TimerEvent: {}
+[4.161109] (-) TimerEvent: {}
+[4.262270] (-) TimerEvent: {}
+[4.363338] (-) TimerEvent: {}
+[4.464408] (-) TimerEvent: {}
+[4.565556] (-) TimerEvent: {}
+[4.666876] (-) TimerEvent: {}
+[4.767975] (-) TimerEvent: {}
+[4.868362] (kogger_sonar) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../../build/kogger_sonar', 'build', '--build-base', '/home/pop/Documents/wqdrone/ros_dev_ws/build/kogger_sonar/build', 'install', '--prefix', '/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar', '--record', '/home/pop/Documents/wqdrone/ros_dev_ws/build/kogger_sonar/install.log', '--single-version-externally-managed'], 'cwd': '/home/pop/Documents/wqdrone/ros_dev_ws/src/kogger_sonar', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LANGUAGE': 'en_US:en', 'USER': 'pop', 'LC_TIME': 'en_US.UTF-8', 'SSH_AGENT_PID': '1895', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/rti.com/rti_connext_dds-5.3.1/lib/x64Linux3gcc5.4.0:/opt/ros/foxy/lib', 'HOME': '/home/pop', 'OLDPWD': '/home/pop/Documents/wqdrone/ros_dev_ws/src', 'DESKTOP_SESSION': 'pop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'pop', 'GTK_MODULES': 'gail:atk-bridge:appmenu-gtk-module', 'NDDSHOME': '/opt/rti.com/rti_connext_dds-5.3.1', 'LC_MONETARY': 'en_US.UTF-8', 'MANAGERPID': '1392', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', '_colcon_cd_root': '/home/pop/ros2_install', 'MANDATORY_PATH': '/usr/share/gconf/pop.mandatory.path', 'IM_CONFIG_PHASE': '1', 'COLCON_PREFIX_PATH': '/home/pop/Documents/wqdrone/ros_dev_ws/install:/home/pop/Documents/wqdrone/ros_dev_ws/src/teensy/teensy/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'pop', 'JOURNAL_STREAM': '8:42725', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'DEFAULTS_PATH': '/usr/share/gconf/pop.default.path', 'USERNAME': 'pop', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/rti.com/rti_connext_dds-5.3.1/lib/x64Linux3gcc5.4.0:/opt/rti.com/rti_connext_dds-5.3.1/bin:/opt/ros/foxy/bin:/home/pop/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/pop-os:@/tmp/.ICE-unix/2093,unix/pop-os:/tmp/.ICE-unix/2093', 'INVOCATION_ID': 'bdecdb049b584c53923e9e0107ab4250', 'PAPERSIZE': 'letter', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'en_US.UTF-8', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/e6dde16a_97e7_4d97_b25d_b8be1b054db7', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'pop:GNOME', 'LC_TELEPHONE': 'en_US.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'pop', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.123', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '100', 'AMENT_PREFIX_PATH': '/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy:/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub:/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar:/opt/ros/foxy', 'SHELL': '/bin/bash', 'LC_NAME': 'en_US.UTF-8', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'pop', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'en_US.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'LC_IDENTIFICATION': 'en_US.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/pop/Documents/wqdrone/ros_dev_ws/build/kogger_sonar', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-pop:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/pop:/home/pop/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share', 'PYTHONPATH': '/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages:/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages:/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages:/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'LC_NUMERIC': 'en_US.UTF-8', 'LC_PAPER': 'en_US.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6003'}, 'shell': False}
+[4.877276] (-) TimerEvent: {}
+[4.903063] (py_serial_pubsub) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../../build/py_serial_pubsub', 'build', '--build-base', '/home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/build', 'install', '--prefix', '/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub', '--record', '/home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/install.log', '--single-version-externally-managed'], 'cwd': '/home/pop/Documents/wqdrone/ros_dev_ws/src/py_serial_pubsub', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LANGUAGE': 'en_US:en', 'USER': 'pop', 'LC_TIME': 'en_US.UTF-8', 'SSH_AGENT_PID': '1895', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/rti.com/rti_connext_dds-5.3.1/lib/x64Linux3gcc5.4.0:/opt/ros/foxy/lib', 'HOME': '/home/pop', 'OLDPWD': '/home/pop/Documents/wqdrone/ros_dev_ws/src', 'DESKTOP_SESSION': 'pop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'pop', 'GTK_MODULES': 'gail:atk-bridge:appmenu-gtk-module', 'NDDSHOME': '/opt/rti.com/rti_connext_dds-5.3.1', 'LC_MONETARY': 'en_US.UTF-8', 'MANAGERPID': '1392', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', '_colcon_cd_root': '/home/pop/ros2_install', 'MANDATORY_PATH': '/usr/share/gconf/pop.mandatory.path', 'IM_CONFIG_PHASE': '1', 'COLCON_PREFIX_PATH': '/home/pop/Documents/wqdrone/ros_dev_ws/install:/home/pop/Documents/wqdrone/ros_dev_ws/src/teensy/teensy/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'pop', 'JOURNAL_STREAM': '8:42725', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'DEFAULTS_PATH': '/usr/share/gconf/pop.default.path', 'USERNAME': 'pop', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/rti.com/rti_connext_dds-5.3.1/lib/x64Linux3gcc5.4.0:/opt/rti.com/rti_connext_dds-5.3.1/bin:/opt/ros/foxy/bin:/home/pop/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/pop-os:@/tmp/.ICE-unix/2093,unix/pop-os:/tmp/.ICE-unix/2093', 'INVOCATION_ID': 'bdecdb049b584c53923e9e0107ab4250', 'PAPERSIZE': 'letter', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'en_US.UTF-8', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/e6dde16a_97e7_4d97_b25d_b8be1b054db7', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'pop:GNOME', 'LC_TELEPHONE': 'en_US.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'pop', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.123', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '100', 'AMENT_PREFIX_PATH': '/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy:/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub:/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar:/opt/ros/foxy', 'SHELL': '/bin/bash', 'LC_NAME': 'en_US.UTF-8', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'pop', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'en_US.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'LC_IDENTIFICATION': 'en_US.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-pop:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/pop:/home/pop/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share', 'PYTHONPATH': '/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages:/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages:/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages:/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'LC_NUMERIC': 'en_US.UTF-8', 'LC_PAPER': 'en_US.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6003'}, 'shell': False}
+[4.938318] (teensy) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../../build/teensy', 'build', '--build-base', '/home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build', 'install', '--prefix', '/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy', '--record', '/home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/install.log', '--single-version-externally-managed'], 'cwd': '/home/pop/Documents/wqdrone/ros_dev_ws/src/teensy', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LANGUAGE': 'en_US:en', 'USER': 'pop', 'LC_TIME': 'en_US.UTF-8', 'SSH_AGENT_PID': '1895', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/rti.com/rti_connext_dds-5.3.1/lib/x64Linux3gcc5.4.0:/opt/ros/foxy/lib', 'HOME': '/home/pop', 'OLDPWD': '/home/pop/Documents/wqdrone/ros_dev_ws/src', 'DESKTOP_SESSION': 'pop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'pop', 'GTK_MODULES': 'gail:atk-bridge:appmenu-gtk-module', 'NDDSHOME': '/opt/rti.com/rti_connext_dds-5.3.1', 'LC_MONETARY': 'en_US.UTF-8', 'MANAGERPID': '1392', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', '_colcon_cd_root': '/home/pop/ros2_install', 'MANDATORY_PATH': '/usr/share/gconf/pop.mandatory.path', 'IM_CONFIG_PHASE': '1', 'COLCON_PREFIX_PATH': '/home/pop/Documents/wqdrone/ros_dev_ws/install:/home/pop/Documents/wqdrone/ros_dev_ws/src/teensy/teensy/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'pop', 'JOURNAL_STREAM': '8:42725', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'DEFAULTS_PATH': '/usr/share/gconf/pop.default.path', 'USERNAME': 'pop', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/rti.com/rti_connext_dds-5.3.1/lib/x64Linux3gcc5.4.0:/opt/rti.com/rti_connext_dds-5.3.1/bin:/opt/ros/foxy/bin:/home/pop/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/pop-os:@/tmp/.ICE-unix/2093,unix/pop-os:/tmp/.ICE-unix/2093', 'INVOCATION_ID': 'bdecdb049b584c53923e9e0107ab4250', 'PAPERSIZE': 'letter', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'en_US.UTF-8', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/e6dde16a_97e7_4d97_b25d_b8be1b054db7', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'pop:GNOME', 'LC_TELEPHONE': 'en_US.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'pop', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.123', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'ROS_DOMAIN_ID': '100', 'AMENT_PREFIX_PATH': '/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy:/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub:/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar:/opt/ros/foxy', 'SHELL': '/bin/bash', 'LC_NAME': 'en_US.UTF-8', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'pop', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'en_US.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'LC_IDENTIFICATION': 'en_US.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/pop/Documents/wqdrone/ros_dev_ws/build/teensy', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-pop:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/pop:/home/pop/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share', 'PYTHONPATH': '/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages:/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages:/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages:/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'LC_NUMERIC': 'en_US.UTF-8', 'LC_PAPER': 'en_US.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6003'}, 'shell': False}
+[4.977675] (-) TimerEvent: {}
+[5.079424] (-) TimerEvent: {}
+[5.181480] (-) TimerEvent: {}
+[5.283430] (-) TimerEvent: {}
+[5.385269] (-) TimerEvent: {}
+[5.487268] (-) TimerEvent: {}
+[5.589157] (-) TimerEvent: {}
+[5.692207] (-) TimerEvent: {}
+[5.794525] (-) TimerEvent: {}
+[5.896504] (-) TimerEvent: {}
+[5.998422] (-) TimerEvent: {}
+[6.100227] (-) TimerEvent: {}
+[6.202224] (-) TimerEvent: {}
+[6.304068] (-) TimerEvent: {}
+[6.405938] (-) TimerEvent: {}
+[6.508009] (-) TimerEvent: {}
+[6.609864] (-) TimerEvent: {}
+[6.711932] (-) TimerEvent: {}
+[6.764298] (teensy) StdoutLine: {'line': b'running egg_info\n'}
+[6.770432] (teensy) StdoutLine: {'line': b'writing ../../build/teensy/teensy.egg-info/PKG-INFO\n'}
+[6.774353] (teensy) StdoutLine: {'line': b'writing dependency_links to ../../build/teensy/teensy.egg-info/dependency_links.txt\n'}
+[6.776285] (teensy) StdoutLine: {'line': b'writing entry points to ../../build/teensy/teensy.egg-info/entry_points.txt\n'}
+[6.777941] (teensy) StdoutLine: {'line': b'writing requirements to ../../build/teensy/teensy.egg-info/requires.txt\n'}
+[6.779570] (teensy) StdoutLine: {'line': b'writing top-level names to ../../build/teensy/teensy.egg-info/top_level.txt\n'}
+[6.812419] (-) TimerEvent: {}
+[6.914298] (-) TimerEvent: {}
+[7.016205] (-) TimerEvent: {}
+[7.033664] (py_serial_pubsub) StdoutLine: {'line': b'running egg_info\n'}
+[7.040286] (py_serial_pubsub) StdoutLine: {'line': b'writing ../../build/py_serial_pubsub/py_serial_pubsub.egg-info/PKG-INFO\n'}
+[7.042365] (py_serial_pubsub) StdoutLine: {'line': b'writing dependency_links to ../../build/py_serial_pubsub/py_serial_pubsub.egg-info/dependency_links.txt\n'}
+[7.043929] (py_serial_pubsub) StdoutLine: {'line': b'writing entry points to ../../build/py_serial_pubsub/py_serial_pubsub.egg-info/entry_points.txt\n'}
+[7.057288] (py_serial_pubsub) StdoutLine: {'line': b'writing requirements to ../../build/py_serial_pubsub/py_serial_pubsub.egg-info/requires.txt\n'}
+[7.058384] (py_serial_pubsub) StdoutLine: {'line': b'writing top-level names to ../../build/py_serial_pubsub/py_serial_pubsub.egg-info/top_level.txt\n'}
+[7.092127] (kogger_sonar) StdoutLine: {'line': b'running egg_info\n'}
+[7.096765] (kogger_sonar) StdoutLine: {'line': b'writing ../../build/kogger_sonar/kogger_sonar.egg-info/PKG-INFO\n'}
+[7.098703] (kogger_sonar) StdoutLine: {'line': b'writing dependency_links to ../../build/kogger_sonar/kogger_sonar.egg-info/dependency_links.txt\n'}
+[7.100473] (kogger_sonar) StdoutLine: {'line': b'writing entry points to ../../build/kogger_sonar/kogger_sonar.egg-info/entry_points.txt\n'}
+[7.101867] (kogger_sonar) StdoutLine: {'line': b'writing requirements to ../../build/kogger_sonar/kogger_sonar.egg-info/requires.txt\n'}
+[7.103289] (kogger_sonar) StdoutLine: {'line': b'writing top-level names to ../../build/kogger_sonar/kogger_sonar.egg-info/top_level.txt\n'}
+[7.116454] (-) TimerEvent: {}
+[7.171767] (teensy) StdoutLine: {'line': b"reading manifest file '../../build/teensy/teensy.egg-info/SOURCES.txt'\n"}
+[7.181354] (teensy) StdoutLine: {'line': b"writing manifest file '../../build/teensy/teensy.egg-info/SOURCES.txt'\n"}
+[7.183406] (teensy) StdoutLine: {'line': b'running build\n'}
+[7.184333] (teensy) StdoutLine: {'line': b'running build_py\n'}
+[7.186168] (teensy) StdoutLine: {'line': b'copying teensy/teensy_pub.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib/teensy\n'}
+[7.188765] (teensy) StdoutLine: {'line': b'running install\n'}
+[7.196540] (teensy) StdoutLine: {'line': b'running install_lib\n'}
+[7.205894] (teensy) StdoutLine: {'line': b'copying /home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/build/lib/teensy/teensy_pub.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy\n'}
+[7.211548] (teensy) StdoutLine: {'line': b'byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy/teensy_pub.py to teensy_pub.cpython-38.pyc\n'}
+[7.216676] (-) TimerEvent: {}
+[7.229970] (teensy) StdoutLine: {'line': b'running install_data\n'}
+[7.234576] (teensy) StdoutLine: {'line': b'running install_egg_info\n'}
+[7.257208] (teensy) StdoutLine: {'line': b"removing '/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[7.258570] (teensy) StdoutLine: {'line': b'Copying ../../build/teensy/teensy.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy-0.0.0-py3.8.egg-info\n'}
+[7.261639] (teensy) StdoutLine: {'line': b'running install_scripts\n'}
+[7.316964] (-) TimerEvent: {}
+[7.353225] (kogger_sonar) StdoutLine: {'line': b"reading manifest file '../../build/kogger_sonar/kogger_sonar.egg-info/SOURCES.txt'\n"}
+[7.360251] (kogger_sonar) StdoutLine: {'line': b"writing manifest file '../../build/kogger_sonar/kogger_sonar.egg-info/SOURCES.txt'\n"}
+[7.361903] (kogger_sonar) StdoutLine: {'line': b'running build\n'}
+[7.369074] (kogger_sonar) StdoutLine: {'line': b'running build_py\n'}
+[7.370161] (kogger_sonar) StdoutLine: {'line': b'running install\n'}
+[7.373908] (kogger_sonar) StdoutLine: {'line': b'running install_lib\n'}
+[7.385080] (kogger_sonar) StdoutLine: {'line': b'running install_data\n'}
+[7.388641] (kogger_sonar) StdoutLine: {'line': b'running install_egg_info\n'}
+[7.399610] (kogger_sonar) StdoutLine: {'line': b"removing '/home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages/kogger_sonar-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[7.402058] (kogger_sonar) StdoutLine: {'line': b'Copying ../../build/kogger_sonar/kogger_sonar.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/python3.8/site-packages/kogger_sonar-0.0.0-py3.8.egg-info\n'}
+[7.408023] (kogger_sonar) StdoutLine: {'line': b'running install_scripts\n'}
+[7.417208] (-) TimerEvent: {}
+[7.434642] (teensy) StdoutLine: {'line': b'Installing gps script to /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/teensy\n'}
+[7.436295] (teensy) StdoutLine: {'line': b'Installing sensor script to /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/teensy\n'}
+[7.437606] (teensy) StdoutLine: {'line': b'Installing teensy_pub script to /home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/teensy\n'}
+[7.441314] (teensy) StdoutLine: {'line': b"writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/teensy/install.log'\n"}
+[7.469443] (py_serial_pubsub) StdoutLine: {'line': b"reading manifest file '../../build/py_serial_pubsub/py_serial_pubsub.egg-info/SOURCES.txt'\n"}
+[7.472185] (py_serial_pubsub) StdoutLine: {'line': b"writing manifest file '../../build/py_serial_pubsub/py_serial_pubsub.egg-info/SOURCES.txt'\n"}
+[7.473175] (py_serial_pubsub) StdoutLine: {'line': b'running build\n'}
+[7.474195] (py_serial_pubsub) StdoutLine: {'line': b'running build_py\n'}
+[7.475121] (py_serial_pubsub) StdoutLine: {'line': b'running install\n'}
+[7.476013] (py_serial_pubsub) StdoutLine: {'line': b'running install_lib\n'}
+[7.487962] (py_serial_pubsub) StdoutLine: {'line': b'running install_data\n'}
+[7.493341] (py_serial_pubsub) StdoutLine: {'line': b'running install_egg_info\n'}
+[7.510200] (py_serial_pubsub) StdoutLine: {'line': b"removing '/home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub-0.0.1-py3.8.egg-info' (and everything under it)\n"}
+[7.512856] (py_serial_pubsub) StdoutLine: {'line': b'Copying ../../build/py_serial_pubsub/py_serial_pubsub.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/python3.8/site-packages/py_serial_pubsub-0.0.1-py3.8.egg-info\n'}
+[7.517504] (-) TimerEvent: {}
+[7.521074] (py_serial_pubsub) StdoutLine: {'line': b'running install_scripts\n'}
+[7.555471] (kogger_sonar) StdoutLine: {'line': b'Installing cmd_print script to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/kogger_sonar\n'}
+[7.557364] (kogger_sonar) StdoutLine: {'line': b'Installing cmd_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/kogger_sonar\n'}
+[7.559737] (kogger_sonar) StdoutLine: {'line': b'Installing list_distance script to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/kogger_sonar\n'}
+[7.561083] (kogger_sonar) StdoutLine: {'line': b'Installing rec_distance script to /home/pop/Documents/wqdrone/ros_dev_ws/install/kogger_sonar/lib/kogger_sonar\n'}
+[7.568107] (kogger_sonar) StdoutLine: {'line': b"writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/kogger_sonar/install.log'\n"}
+[7.617827] (-) TimerEvent: {}
+[7.657807] (teensy) CommandEnded: {'returncode': 0}
+[7.685090] (py_serial_pubsub) StdoutLine: {'line': b'Installing listener script to /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/py_serial_pubsub\n'}
+[7.687150] (py_serial_pubsub) StdoutLine: {'line': b'Installing talker script to /home/pop/Documents/wqdrone/ros_dev_ws/install/py_serial_pubsub/lib/py_serial_pubsub\n'}
+[7.691275] (py_serial_pubsub) StdoutLine: {'line': b"writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/py_serial_pubsub/install.log'\n"}
+[7.724584] (-) TimerEvent: {}
+[7.801864] (teensy) JobEnded: {'identifier': 'teensy', 'rc': 0}
+[7.816767] (kogger_sonar) CommandEnded: {'returncode': 0}
+[7.826391] (-) TimerEvent: {}
+[7.888726] (kogger_sonar) JobEnded: {'identifier': 'kogger_sonar', 'rc': 0}
+[7.901581] (py_serial_pubsub) CommandEnded: {'returncode': 0}
+[7.926962] (-) TimerEvent: {}
+[7.973775] (py_serial_pubsub) JobEnded: {'identifier': 'py_serial_pubsub', 'rc': 0}
+[7.980611] (-) EventReactorShutdown: {}
