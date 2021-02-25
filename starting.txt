@@ -1,33 +1,35 @@
-## ON RPi##
+#flags for colcon
+-os=ubuntu:focal
+#get to RPi sensors:
+ssh ubuntu@ubuntu.local (@192.168.1.113)
+yes
+raspberrypi
 
+## ON RPi## 
+#from ~
+#tab1
 source /opt/ros/foxy/setup.bash
 
 . ros_dev_ws/install/setup.sh
 
 export ROS_DOMAIN_ID=100
 
-ros2 run py_serial_pubsub talker
+ros2 launch ~/launch/waterq.py
 
-ros2 bag record /topic
-
-#GPS
-ros_dev_ws/launch/gps_start.py = GPS launch
-
-
-launch file does this:
-gpsd /dev/ttyS0 9600
-ros2 run rclcpp_components component_container
-ros2 component load /ComponentManager gpsd_client gpsd_client:GPSDClientComponent
-ros2 component load /ComponentManager gps_tools gps_tools::UtmOdometryToNavSatFixComponent
-
-
-ros2 topic echo /fix
-
-## On laptop ##
-
+### ON LAPTOP ###
+#needs to be in ~ for the dashboard to work.
+#tab2
 source /opt/ros/foxy/setup.bash
-. ros_dev_ws/install/setup.sh
+
+. ~/Documents/wqdrone/ros_dev_ws/install/setup.sh
+
 export ROS_DOMAIN_ID=100
-ros2 bag record /topic /fix
+ros2 launch ~/Documents/wqdrone/ros_dev_ws/launch/laptop.py
 
+#tab3
+#Conda source
+source /home/pop/anaconda3/etc/profile.d/conda.sh
+conda activate interpol
 
+cd ~/Documents/wqdrone/dashboard
+python3 app.py
