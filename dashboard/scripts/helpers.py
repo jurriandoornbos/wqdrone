@@ -91,12 +91,17 @@ def interkrige(lon,lat,var,res, c_type = "geographic"):
     gridx = np.linspace(start = min(lon)-x[1], stop = max(lon)+x[1],num = res)
     gridy = np.linspace(start = min(lat)+y[1], stop = max(lat)-y[1],num = res)
 
-    z,SS = OrdinaryKriging(x = lon,
-                           y = lat, 
-                           z = var, 
-                           variogram_model = "linear",
-                           coordinates_type = "geographic").execute("grid",xpoints = gridx, ypoints = gridy)
-    
+    try:
+        z,SS = OrdinaryKriging(x = lon,
+                               y = lat, 
+                               z = var, 
+                               variogram_model = "linear",
+                               coordinates_type = "geographic").execute("grid",xpoints = gridx, ypoints = gridy)
+    except ValueError:
+        xx,yy = np.meshgrid(x,y)
+        z = np.zeros_like(xx,dtype = np.uint8)
+        SS=0
+        
     return (z,SS,gridx,gridy)
 
 def rasterbuilder(val, x,y, filename):
@@ -113,6 +118,7 @@ def rasterbuilder(val, x,y, filename):
     ## Transform it to rasterdata! via rasterio
     import rasterio
     import os
+    import numpy as np
     #projstrings
 
     rdnew = "+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs ",
@@ -120,7 +126,7 @@ def rasterbuilder(val, x,y, filename):
     wgs84 = "+proj=longlat +datum=WGS84 +no_defs"
 
     transform = rasterio.transform.guard_transform(rasterio.transform.from_bounds(min(x), min(y), max(x), max(y), 100,100))
-
+        
     new_dataset = rasterio.open(
         os.path.join(os.getcwd(),"data" , filename + ".tif"),
         "w",
@@ -202,8 +208,11 @@ def html_raster(gdf,zoomlvl, rasterloc,colormap,out):
     bounds = r.bounds
 
 
-    #Reshape data to form min = 0 and max =1
-    image = (data - np.min(data))/np.ptp(data)
+    #Reshape data to form min = 0 and max =1 except when the data consists of zeros
+    if np.all(data==0):
+        image = data
+    else:
+        image = (data - np.min(data))/np.ptp(data)
 
     #set up base map
     my_coords = (np.mean(gdf.lat),np.mean(gdf.lon))

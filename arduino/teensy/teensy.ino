@@ -39,10 +39,12 @@ char receivedChars[numChars];
 boolean newData = false;
 
 void setup() {
-    Serial1.begin(115200);
     Serial.begin(115200);
-    DEBUG_PORT.begin(115200); //serial
+    Serial1.begin(115200);
     gpsPort.begin( 9600 ); //serial3
+    while (!Serial){
+      ;
+      }
 }
 
 void loop() {
