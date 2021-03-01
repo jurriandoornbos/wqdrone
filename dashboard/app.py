@@ -12,7 +12,7 @@ import plotly.express as px
 
 import os
 
-from scripts.helpers import load_db3, gdf_builder, interkrige, rasterbuilder, html_points, html_raster
+from scripts.helpers import load_db3, gdf_builder, interkrige, rasterbuilder, html_points, html_raster, reducer
 
 #Set file location names
 rosbagname = "laptoptest"
@@ -31,7 +31,7 @@ app.layout = html.Div(children=[
                                children=[
                                   html.Div(className='four columns div-user-controls',
                                            children = [
-                                                html.H2('Striker v2 Progress Monitor'),
+                                                html.H2('Water Utility Rover Monitor'),
                                                 html.P('''IMU measurements'''),
                                                 dcc.Graph(id = "imu1", figure = fig),
                                                 dcc.Graph(id = "imu2", figure = fig2),
@@ -41,7 +41,7 @@ app.layout = html.Div(children=[
                                            children = [
                                                html.H2('''GPS Points acquired'''),
                                                html.Iframe(id = "map_points", srcDoc = open("./html_folium/points.html","r").read(),width = "100%", height = "100%"),
-                                               dcc.Interval(id='interval-maps1', interval=1*5000, n_intervals=0)#every 5s update the points
+                                               dcc.Interval(id='interval-maps1', interval=1*10000, n_intervals=0)#every 10s update the points
                                            ]),  # Define the middle elements
                                     html.Div(className='four columns div-for-charts bg-grey',
                                            children = [
@@ -53,7 +53,7 @@ app.layout = html.Div(children=[
                                                html.Iframe(id = "map_raster3", srcDoc = open("./html_folium/points.html","r").read(),width = "100%", height = "25%"),
                                                html.P('''pH'''),
                                                html.Iframe(id = "map_raster4", srcDoc = open("./html_folium/points.html","r").read(),width = "100%", height = "25%"),
-                                               dcc.Interval(id='interval-maps2', interval=1*10000, n_intervals=0)#every 10s update the rasters
+                                               dcc.Interval(id='interval-maps2', interval=2*10000, n_intervals=0)#every 20s update the rasters
                                            ])  # Define the right element
                                   
                                         ])
@@ -66,8 +66,8 @@ app.layout = html.Div(children=[
 
 def update_plots(n):
     gdf = gdf_builder(load_db3(db_loc))
-    fig = px.scatter(gdf, y="distance", x="timestamp", title = "Depth")
-    fig2 = px.line(gdf, y="ph", x= "timestamp",title = "pH")
+    fig = px.scatter(gdf, y="temp", x="timestamp", title = "Temp: %f" % (gdf["temp"].iloc[-1]))
+    fig2 = px.line(gdf, y="ph", x= "timestamp",title = "pH: %f" % (gdf["ph"].iloc[-1]))
     return fig,fig2
 
 
@@ -92,14 +92,14 @@ def update_maps(n):
 
 def update_maps(n):
     gdf = gdf_builder(load_db3(db_loc))
+    gdf = reducer(gdf,["tds", "temp", "ph", "turb","distance"],5)
     
-    dist_z, dist_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["distance"], res=int(round(len(gdf)/10,0)))
-    temp_z, temp_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["temp"], res=int(round(len(gdf)/10,0)))
-    ph_z, ph_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["ph"], res=int(round(len(gdf)/10,0)))
-    turb_z, turb_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["turb"], res=int(round(len(gdf)/10,0)))
+    dist_z, dist_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["distance"], res=100)
+    temp_z, temp_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["temp"], res=100)
+    ph_z, ph_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["ph"], res=100)
+    turb_z, turb_SS,x,y = interkrige(gdf["lon"], gdf["lat"], gdf["turb"], res=100)
         
     r1_html = html_raster(gdf = gdf, zoomlvl = 18, rasterloc = rasterbuilder(dist_z, x,y,"depth"), colormap = "Green", out = "depth")
-    
     r2_html = html_raster(gdf = gdf, zoomlvl = 18, rasterloc = rasterbuilder(turb_z, x,y,"turb"), colormap = "Blue", out = "turb")
     
     r3_html = html_raster(gdf = gdf, zoomlvl = 18, rasterloc = rasterbuilder(ph_z, x,y,"ph"), colormap = "Red", out = "ph")

@@ -21,7 +21,11 @@ def load_db3(db_loc):
     msgs = pd.read_sql("SELECT * from messages", con)
 
     dist_id = topics.id[topics["name"].str.contains("sonar_dist")]
+    
+    ### change for other GPS TOPIC ###
     gps_id = topics.id[topics["name"].str.contains("teensy_fix")]
+    
+    
     sensor_id = topics.id[topics["name"].str.contains("wq_sensors")]
 
     df= msgs.loc[msgs["topic_id"].isin([dist_id,gps_id,sensor_id])].reset_index()
@@ -54,7 +58,7 @@ def load_db3(db_loc):
     # and remerge the dataset back to a nice, tidy DF    
     df = pd.merge_asof(distdf,gpdf, on = "timestamp")
     df = pd.merge_asof(df, sdf, on = "timestamp").dropna()
-    
+    con.close()
     return df
 
 
@@ -68,6 +72,30 @@ def gdf_builder(df):
     gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lon, df.lat), crs = "EPSG:4326")
     return(gdf)
 
+def reducer(df,names,w):
+    '''
+    reduces all data with a rolling mean filter every w steps
+    df = input dataframe
+    names = list of columns to be filtered
+    w = window size
+    
+    returns a new dataframe
+    '''
+
+
+    import pandas as pd
+    import geopandas as gpd
+    
+    gdf = gpd.GeoDataFrame()  
+    
+    for name in names:
+        l = df[name].rolling(window =w).mean()
+        gdf[name] = l.iloc[::w]
+    gdf["lat"] = df["lat"].iloc[::w]
+    gdf["lon"] = df["lon"].iloc[::w]
+    
+    return gdf.dropna()
+    
 def interkrige(lon,lat,var,res, c_type = "geographic"):
     '''
     Interpolates all the data into a grid using the Ordinary Kriging model    
