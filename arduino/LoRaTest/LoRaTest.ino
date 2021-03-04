@@ -5,20 +5,24 @@ SoftwareSerial mySerial(2, 3); //TX, RX
 
 void setup() {
   Serial.begin(9600);
+  while (!Serial){
+  ;
+  }
   mySerial.begin(9600);
 }
 
 void loop() {
   
   
-  if(Serial.available() > 0){//Read from serial monitor and send over  OSOYOO UART LoRa wireless module
+  if(Serial.available() > 0){//Read from serial monitor and send over LoRa wireless module
     String input = Serial.readString();
+    input.trim();
     mySerial.println(input);    
   }
  
-  if(mySerial.available() > 1){//Read from  OSOYOO UART LoRa wireless module and send to serial monitor
+  if(mySerial.available() > 1){//Read from LoRa wireless module and send to serial monitor
     String input = mySerial.readString();
+    input.trim();
     Serial.println(input);    
   }
-  delay(20);
 }
