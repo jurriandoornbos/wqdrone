@@ -13,16 +13,15 @@ void setup() {
 
 void loop() {
   
-  
+ char inByte = ' ';  
   if(Serial.available() > 0){//Read from serial monitor and send over LoRa wireless module
-    String input = Serial.readString();
-    input.trim();
-    mySerial.println(input);    
+    char inByte = Serial.read();
+    mySerial.println(inByte);    
   }
- 
-  if(mySerial.available() > 1){//Read from LoRa wireless module and send to serial monitor
-    String input = mySerial.readString();
-    input.trim();
-    Serial.println(input);    
+ char outByte = ' ';
+  if(mySerial.available() > 0){//Read from LoRa wireless module and send to serial monitor
+    char outByte = mySerial.read();
+    Serial.println(outByte);    
   }
+  delay(10);
 }
