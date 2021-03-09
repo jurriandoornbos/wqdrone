@@ -1,5 +1,0 @@
-  File "/home/pop/Documents/wqdrone/ros_dev_ws/install/teensy/lib/python3.8/site-packages/teensy/teensy_pub.py", line 25
-    def gps_parse(self,self.line):
-                           ^
-SyntaxError: invalid syntax
-

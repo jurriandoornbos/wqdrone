@@ -1,0 +1,10 @@
+[console_scripts]
+cmd_receive = lora.lora_cmd_receive:main
+cmd_send = lora.lora_cmd_send:main
+sonar_rec = lora.lora_sonar_receive:main
+sonar_send = lora.lora_sonar_send:main
+wq_gps_rec = lora.lora_wq_gps_receive:main
+wq_gps_send = lora.lora_wq_gps_send:main
+wq_rec = lora.lora_wq_receive:main
+wq_send = lora.lora_wq_send:main
+

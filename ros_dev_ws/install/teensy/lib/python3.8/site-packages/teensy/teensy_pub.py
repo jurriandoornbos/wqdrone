@@ -25,8 +25,8 @@ class GPSPublisher(Node):
     def gps_parse(self,line):
         
         def splitter(item):
-            begin  = item[:-7]
-            end = item[-7:]
+            begin  = str(item[:-7])
+            end = str(item[-7:])
             s = "0"+begin + "." +end
             f = float(s)
             return f
@@ -38,7 +38,7 @@ class GPSPublisher(Node):
         lon = splitter(items[3])
         hdg = items[4]
         spd = items[5]
-        alt = float(items[6])
+        alt = float("0"+items[6])
         sats = int(items[7])
         rxok = items[8]
         rxerr = items[9]
