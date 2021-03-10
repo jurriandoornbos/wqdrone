@@ -14,14 +14,14 @@ class MinimalPublisher(Node):
     def __init__(self):
         super().__init__('lora_gps_teensy_rec')
         self.publisher_ = self.create_publisher(NavSatFix, 'gps_lora_teensy', 10)
-        timer_period = 1  # seconds
+        timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
     def timer_callback(self):
         msg = NavSatFix()
         s = ser.readline()
         s = s.decode("ascii")
-        if len(s)>4 and s[0:10] == "teensy_gps":
+        if len(s)>4 and s[0:11] == "teensy_gps":
                 l = s.split()
                 msg.latitude =float(l[3])
                 msg.longitude =float(l[5])
