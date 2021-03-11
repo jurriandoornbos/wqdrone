@@ -19,6 +19,7 @@ class MinimalPublisher(Node):
 
     def timer_callback(self):
         msg = NavSatFix()
+        ser = serial.Serial(device, 9600)
         s = ser.readline()
         s = s.decode("ascii")
         if len(s)>4 and s[0:10] == "teensy_gps":
@@ -28,7 +29,8 @@ class MinimalPublisher(Node):
                 msg.altitude = 1.0
                 self.publisher_.publish(msg)
                 self.get_logger().info('Lora Received: "%s"' % s)
-            
+        ser.close()
+       
 def main(args=None):
     rclpy.init(args=args)
     minimal_publisher = MinimalPublisher()

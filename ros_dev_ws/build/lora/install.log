@@ -8,6 +8,7 @@
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_cmd_receive.py
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_wq_gps_send.py
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_wq_receive.py
+/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_group.py
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_cmd_send.py
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/__pycache__/lora_wq_send.cpython-38.pyc
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/__pycache__/__init__.cpython-38.pyc
@@ -19,6 +20,7 @@
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/__pycache__/lora_cmd_receive.cpython-38.pyc
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/__pycache__/lora_wq_gps_send.cpython-38.pyc
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/__pycache__/lora_wq_receive.cpython-38.pyc
+/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/__pycache__/lora_group.cpython-38.pyc
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/__pycache__/lora_cmd_send.cpython-38.pyc
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/share/ament_index/resource_index/packages/lora
 /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/share/lora/package.xml

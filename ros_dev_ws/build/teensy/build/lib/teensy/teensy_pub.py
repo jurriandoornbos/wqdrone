@@ -1,6 +1,7 @@
 import rclpy
 import serial
 import re
+import time
 from rclpy.node import Node
 
 from std_msgs.msg import Float64MultiArray
@@ -9,16 +10,17 @@ from sensor_msgs.msg import NavSatFix
 
 from rclpy.executors import SingleThreadedExecutor
 
-port = "/dev/ttyACM1"
+port = "/dev/ttyACM0"
 
 ser = serial.Serial(port, 115200)
+time.sleep(2)
 
 class GPSPublisher(Node):
 
     def __init__(self):
         super().__init__('gps_publisher')
         self.gps_publisher_ = self.create_publisher(NavSatFix, 'teensy_fix', 10)
-        timer_period = 1  # seconds
+        timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
     
     
@@ -38,7 +40,7 @@ class GPSPublisher(Node):
         lon = splitter(items[3])
         hdg = items[4]
         spd = items[5]
-        alt = float("0"+items[6])
+        alt = 1.0
         sats = int(items[7])
         rxok = items[8]
         rxerr = items[9]

@@ -5,7 +5,7 @@ from std_msgs.msg import String
 
 import serial
 
-ser = serial.Serial("/dev/ttyUSB0", 115200)
+ser = serial.Serial("/dev/ttySonar", 115200)
 cmd  = "bb5500030200050d"
 send = bytes.fromhex(cmd)
 

@@ -17,7 +17,7 @@ class MinimalSubscriber(Node):
         super().__init__('lora_gps_teensy_sender')
         self.subscription = self.create_subscription(
             NavSatFix,
-            'teensy_gps',
+            '/teensy1/teensy_fix',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning
@@ -27,9 +27,11 @@ class MinimalSubscriber(Node):
         The idea is that for every topic, there is a LoRa Comms module available
         send + receive for each one. End of a line is hardcoded in the Arduino module as "$"
     	'''
-        s = "teensy_gps: " + "lat: " + str(msg.latitude) + "lon: " + str(msgs.longitude)+ " $"
+        ser = serial.Serial(device, baudrate = 9600,timeout=0.1,write_timeout=0.1)
+        s = "teensy_gps: " + "lat: " + str(msg.latitude)+ " "+ "lon: " + str(msg.longitude)+ " $"
         ser.write(s.encode("ascii"))
         self.get_logger().info('Sent LoRa msg: %s' % s)
+        ser.close()
 
 def main(args=None):
     rclpy.init(args=args)

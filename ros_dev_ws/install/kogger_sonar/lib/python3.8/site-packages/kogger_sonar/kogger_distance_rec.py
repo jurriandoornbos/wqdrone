@@ -4,7 +4,7 @@ from rclpy.node import Node
 from std_msgs.msg import UInt32
 import serial
 
-ser = serial.Serial("/dev/ttyUSB0", 115200)
+ser = serial.Serial("/dev/ttySonar", 115200)
 
 class MinimalPublisher(Node):
 

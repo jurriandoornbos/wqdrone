@@ -21,6 +21,7 @@ class MinimalPublisher(Node):
 
     def timer_callback(self):
         msg = UInt32()
+        ser = serial.Serial(device, 9600)
         s = ser.readline()
         s = s.decode("ascii")
         if len(s)>4 and s[0:11] == "sonar_send":
@@ -28,6 +29,7 @@ class MinimalPublisher(Node):
                 msg.data = l
                 self.publisher_.publish(msg)
                 self.get_logger().info('Lora Received: "%s"' % msg.data)
+        ser.close()
             
 def main(args=None):
     rclpy.init(args=args)

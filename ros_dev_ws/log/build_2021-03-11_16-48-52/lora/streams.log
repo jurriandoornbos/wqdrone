@@ -1,0 +1,39 @@
+[1.191s] Invoking command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/lora': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/lora build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/lora --record /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/install.log --single-version-externally-managed
+[1.648s] running egg_info
+[1.649s] writing ../../build/lora/lora.egg-info/PKG-INFO
+[1.653s] writing dependency_links to ../../build/lora/lora.egg-info/dependency_links.txt
+[1.654s] writing entry points to ../../build/lora/lora.egg-info/entry_points.txt
+[1.655s] writing requirements to ../../build/lora/lora.egg-info/requires.txt
+[1.656s] writing top-level names to ../../build/lora/lora.egg-info/top_level.txt
+[1.734s] reading manifest file '../../build/lora/lora.egg-info/SOURCES.txt'
+[1.740s] writing manifest file '../../build/lora/lora.egg-info/SOURCES.txt'
+[1.741s] running build
+[1.741s] running build_py
+[1.743s] copying lora/lora_wq_gps_receive.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/build/lib/lora
+[1.750s] copying lora/lora_group.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/build/lib/lora
+[1.751s] running install
+[1.753s] running install_lib
+[1.761s] copying /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/build/lib/lora/lora_wq_gps_receive.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora
+[1.761s] copying /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/build/lib/lora/lora_group.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora
+[1.768s] byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_wq_gps_receive.py to lora_wq_gps_receive.cpython-38.pyc
+[1.770s] byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_group.py to lora_group.cpython-38.pyc
+[1.770s]   File "/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_group.py", line 22
+[1.771s]     def beginning_execution(self entity):
+[1.771s]                                  ^
+[1.771s] SyntaxError: invalid syntax
+[1.771s] 
+[1.771s] running install_data
+[1.773s] running install_egg_info
+[1.776s] removing '/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora-0.0.0-py3.8.egg-info' (and everything under it)
+[1.777s] Copying ../../build/lora/lora.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora-0.0.0-py3.8.egg-info
+[1.787s] running install_scripts
+[1.832s] Installing cmd_receive script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+[1.833s] Installing cmd_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+[1.834s] Installing sonar_rec script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+[1.834s] Installing sonar_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+[1.835s] Installing wq_gps_rec script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+[1.835s] Installing wq_gps_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+[1.837s] Installing wq_rec script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+[1.838s] Installing wq_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+[1.840s] writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/lora/install.log'
+[1.946s] Invoked command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/lora' returned '0': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/lora build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/lora --record /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/install.log --single-version-externally-managed

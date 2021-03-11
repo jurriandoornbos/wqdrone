@@ -20,6 +20,7 @@ class MinimalPublisher(Node):
 
     def timer_callback(self):
         msg = Twist()
+        ser = serial.Serial(device, 9600)
         s = ser.readline()
         s = s.decode("ascii")
         if len(s)>4 and s[0:12] == "teleop_lora":
@@ -28,6 +29,7 @@ class MinimalPublisher(Node):
                 msg.angular.z =float(l[5])
                 self.publisher_.publish(msg)
                 self.get_logger().info('Lora Received: lx: %f , az: %f' % (msg.linear.x, msg.angular.z))
+        ser.close()
             
 def main(args=None):
     rclpy.init(args=args)

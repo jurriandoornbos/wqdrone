@@ -17,7 +17,7 @@ class MinimalSubscriber(Node):
         super().__init__('lora_sonar_send')
         self.subscription = self.create_subscription(
             UInt32,
-            'sonar_dist',
+            '/sonar1/sonar_dist',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning

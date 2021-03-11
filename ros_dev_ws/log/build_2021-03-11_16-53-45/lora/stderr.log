@@ -1,0 +1,5 @@
+  File "/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_group.py", line 31
+    
+    ^
+SyntaxError: unexpected EOF while parsing
+

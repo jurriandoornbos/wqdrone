@@ -1,0 +1,5 @@
+  File "/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_group.py", line 22
+    def beginning_execution(self entity):
+                                 ^
+SyntaxError: invalid syntax
+

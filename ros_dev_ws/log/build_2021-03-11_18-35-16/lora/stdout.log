@@ -1,0 +1,29 @@
+running egg_info
+writing ../../build/lora/lora.egg-info/PKG-INFO
+writing dependency_links to ../../build/lora/lora.egg-info/dependency_links.txt
+writing entry points to ../../build/lora/lora.egg-info/entry_points.txt
+writing requirements to ../../build/lora/lora.egg-info/requires.txt
+writing top-level names to ../../build/lora/lora.egg-info/top_level.txt
+reading manifest file '../../build/lora/lora.egg-info/SOURCES.txt'
+writing manifest file '../../build/lora/lora.egg-info/SOURCES.txt'
+running build
+running build_py
+copying lora/lora_wq_gps_receive.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/build/lib/lora
+running install
+running install_lib
+copying /home/pop/Documents/wqdrone/ros_dev_ws/build/lora/build/lib/lora/lora_wq_gps_receive.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora
+byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_wq_gps_receive.py to lora_wq_gps_receive.cpython-38.pyc
+running install_data
+running install_egg_info
+removing '/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/lora/lora.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora-0.0.0-py3.8.egg-info
+running install_scripts
+Installing cmd_receive script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+Installing cmd_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+Installing sonar_rec script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+Installing sonar_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+Installing wq_gps_rec script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+Installing wq_gps_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+Installing wq_rec script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+Installing wq_send script to /home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/lora
+writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/lora/install.log'

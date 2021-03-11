@@ -1,0 +1,5 @@
+  File "/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_wq_gps_receive.py", line 34
+    except:
+    ^
+SyntaxError: invalid syntax
+
