@@ -9,6 +9,10 @@ device = "/dev/ttyLoRa"
 ser = serial.Serial(device, 115200)
 time.sleep(3)
 
+'''
+When troubleshooting, please take out the try statement. Doublecheck the get_logger info as well.
+'''
+
 class LoRaGPS(Node):
 
     def __init__(self):

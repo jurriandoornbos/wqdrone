@@ -1,6 +1,6 @@
 #include <SoftwareSerial.h>
 
-SoftwareSerial mySerial(2, 3); //TX, RX
+SoftwareSerial mySerial(3, 2); //TX, RX
 // (Send and Receive)
 //String message = "Bericht $";
 int i = 0;

@@ -1,0 +1,6 @@
+  File "/home/pop/Documents/wqdrone/ros_dev_ws/install/lora/lib/python3.8/site-packages/lora/lora_gps_lanlot_receive.py", line 31
+    msg.latitude =float(l[2)
+                           ^
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '['
+
+Sorry: IndentationError: unexpected unindent (lora_cmd_receive.py, line 39)

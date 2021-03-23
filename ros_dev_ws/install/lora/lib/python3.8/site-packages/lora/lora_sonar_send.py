@@ -7,7 +7,7 @@ from rclpy.node import Node
 from std_msgs.msg import UInt32
 
 device = "/dev/ttyLoRa"
-ser = serial.Serial(device, baudrate = 9600,timeout=0.1,write_timeout=0.1)
+ser = serial.Serial(device, baudrate = 115200,timeout=0.1,write_timeout=0.1)
 
 time.sleep(3)
 

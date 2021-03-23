@@ -30,6 +30,10 @@ def generate_launch_description():
 	    package = "lora",
 	    namespace = "lr",
 	    executable = "wq_gps_send"),
+	Node(
+	    package = "lora",
+	    executable = "cmd_receive"),
+	
 
 	    
 	launch.actions.ExecuteProcess(

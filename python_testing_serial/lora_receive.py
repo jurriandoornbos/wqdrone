@@ -1,6 +1,6 @@
 import serial
 import time
-device = "/dev/ttyUSB0"
+device = "/dev/ttyUSB1	"
 ser = serial.Serial(device, baudrate = 115200,write_timeout=0.1)
 time.sleep(2)
 

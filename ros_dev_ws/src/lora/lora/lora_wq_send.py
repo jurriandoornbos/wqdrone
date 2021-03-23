@@ -7,7 +7,7 @@ from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray
 
 device = "/dev/ttyLoRa"
-ser = serial.Serial(device, baudrate = 9600,timeout=0.1,write_timeout=0.1)
+ser = serial.Serial(device, baudrate = 115200,timeout=0.1,write_timeout=0.1)
 
 time.sleep(3)
 
@@ -17,7 +17,7 @@ class MinimalSubscriber(Node):
         super().__init__('lora_wq_send')
         self.subscription = self.create_subscription(
             Float64MultiArray,
-            '/teensy1/wq_sensors',
+            '/ty/wq_sensors',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning

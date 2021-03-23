@@ -41,7 +41,7 @@ class GPSPublisher(Node):
         hdg = items[4]
         spd = items[5]
         alt = 1.0
-        sats = int(items[7])
+        sats = items[7]
         rxok = items[8]
         rxerr = items[9]
         rxchars = items[10]

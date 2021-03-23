@@ -22,7 +22,7 @@ def generate_launch_description():
 
 	    
 	launch.actions.ExecuteProcess(
-		cmd = ["ros2", "bag","record","-o", "lora_bag", "/lr/wq_lora", "/lr/sonar_lora", "/lr/gps_lora_teensy"],
+		cmd = ["ros2", "bag","record","-o", "Mar15_lora", "/lr/wq_lora", "/lr/sonar_lora", "/lr/gps_lora_teensy"],
 		output = "screen")
 	
 	]) 

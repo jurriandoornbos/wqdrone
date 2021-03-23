@@ -13,7 +13,6 @@ lora/lora_cmd_receive.py
 lora/lora_cmd_send.py
 lora/lora_gps_lanlot.py
 lora/lora_gps_lanlot_receive.py
-lora/lora_group.py
 lora/lora_sonar_receive.py
 lora/lora_sonar_send.py
 lora/lora_wq_gps_receive.py
