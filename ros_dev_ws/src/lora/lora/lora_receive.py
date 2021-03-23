@@ -28,8 +28,8 @@ class LoRaPublisher(Node):
                 msg.data = s
                 self.publisher_.publish(msg)
                 self.get_logger().info('Lora Received: "%s"' % msg.data)
-        ser.close()
-            
+            except:
+                pass
 def main(args=None):
     rclpy.init(args=args)
     lora_publisher = LoRaPublisher()
