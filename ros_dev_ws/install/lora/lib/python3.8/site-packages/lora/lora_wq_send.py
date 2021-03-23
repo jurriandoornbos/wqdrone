@@ -17,7 +17,7 @@ class MinimalSubscriber(Node):
         super().__init__('lora_wq_send')
         self.subscription = self.create_subscription(
             Float64MultiArray,
-            '/teensy1/wq_sensors',
+            '/ty/wq_sensors',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning

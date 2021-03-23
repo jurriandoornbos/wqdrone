@@ -7,31 +7,25 @@ from rclpy.node import Node
 from std_msgs.msg import UInt32
 
 
-device = "/dev/ttyLoRa"
-ser = serial.Serial(device, 115200)
-time.sleep(3)
-
 class MinimalPublisher(Node):
 
     def __init__(self):
         super().__init__('lora_sonar_rec')
+        self.subscription = self.create_subscription(String,"/lr/lora_str",self.listener_callback,10)
+        self.subscription
         self.publisher_ = self.create_publisher(UInt32, 'sonar_lora', 10)
-        timer_period = 1 # seconds
-        self.timer = self.create_timer(timer_period, self.timer_callback)
+        
+    def listener_callback(self,msg):
+        pub = UInt32()
+        s = msg.data
+        if s[0:11] == "sonar_send":
+            try:
+                u = int(s.split()[1])
+                pub.data = u
+                self.publisher_.publish(pub)
 
-    def timer_callback(self):
-        msg = UInt32()
-        ser = serial.Serial(device, 115200)
-        s = ser.readline()
-        s = s.decode("ascii")
-        if len(s)>4 and s[0:11] == "sonar_send":
-                try:
-                        u = int(s.split()[1])
-                        msg.data = l
-                        self.publisher_.publish(msg)
-                        self.get_logger().info('Lora Received: "%s"' % msg.data)
-                except:
-                        pass
+            except:
+                pass
         
             
 def main(args=None):

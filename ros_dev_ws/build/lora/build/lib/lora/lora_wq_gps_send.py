@@ -20,7 +20,7 @@ class GPS_Send(Node):
         super().__init__('lora_gps_teensy_sender')
         self.subscription = self.create_subscription(
             NavSatFix,
-            '/teensy1/teensy_fix',
+            '/ty/teensy_fix',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning
