@@ -28,6 +28,7 @@ setup(
         "wq_gps_rec = lora.lora_wq_gps_receive:main",
         "cmd_send = lora.lora_cmd_send:main",
         "cmd_receive = lora.lora_cmd_receive:main",
+        "lr_receive = lora.lora_receive:main",
         ],
     },
 )
