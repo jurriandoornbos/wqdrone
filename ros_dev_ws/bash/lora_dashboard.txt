@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source /home/pop/anaconda3/etc/profile.d/conda.sh
+conda activate interpol
+cd ~/Documents/wqdrone/dashboard_v2
+python3 app.py

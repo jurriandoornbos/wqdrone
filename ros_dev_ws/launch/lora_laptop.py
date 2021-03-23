@@ -4,6 +4,10 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 	return LaunchDescription([
+	Node(
+	    package = "lora",
+	    namespace = "lr",
+	    executable = "lr_receive"),
 
 	Node(
 	    package = "lora",
@@ -22,7 +26,7 @@ def generate_launch_description():
 
 	    
 	launch.actions.ExecuteProcess(
-		cmd = ["ros2", "bag","record","-o", "Mar15_lora", "/lr/wq_lora", "/lr/sonar_lora", "/lr/gps_lora_teensy"],
+		cmd = ["ros2", "bag","record","-o", "lora_Mar26", "/lr/wq_lora", "/lr/sonar_lora", "/lr/gps_lora_teensy"],
 		output = "screen")
 	
 	]) 

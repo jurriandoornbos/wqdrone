@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+source /opt/ros/foxy/setup.bash
+
+. ros_dev_ws/install/setup.sh
+
+export ROS_DOMAIN_ID=100
+
+ros2 launch ~/launch/pi_launch.py

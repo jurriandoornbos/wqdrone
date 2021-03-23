@@ -37,7 +37,7 @@ def generate_launch_description():
 
 	    
 	launch.actions.ExecuteProcess(
-		cmd = ["ros2", "bag","record","-a" ,"-o", "ROSPIBAG"],
+		cmd = ["ros2", "bag","record","-a" ,"-o", "RPi_Mar26"],
 		output = "screen")
 	
 	]) 

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+source /opt/ros/foxy/setup.sh
+. ~/Documents/wqdrone/ros_dev_ws/install/setup.sh
+export ROS_DOMAIN_ID=100
+ros2 launch ~/Documents/wqdrone/ros_dev_ws/launch/lora_laptop.py

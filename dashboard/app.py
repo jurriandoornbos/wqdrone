@@ -15,7 +15,7 @@ import os
 from scripts.helpers import load_db3, gdf_builder, interkrige, rasterbuilder, html_points, html_raster, reducer
 
 #Set file location names
-rosbagname = "laptoptest"
+rosbagname = "Mar26"
 db_loc = os.path.join(os.path.expanduser('~'), rosbagname , rosbagname+"_0.db3")
 
 gdf = gdf_builder(load_db3(db_loc))

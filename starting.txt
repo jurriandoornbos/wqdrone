@@ -1,35 +1,47 @@
 #flags for colcon
 -os=ubuntu:focal
+
 #get to RPi sensors:
-ssh ubuntu@ubuntu.local (@192.168.1.113)
-yes
-raspberrypi
+	ssh ubuntu@ubuntu.local (@192.168.1.113)
+	yes
+	raspberrypi
 
 ## ON RPi## 
-#from ~
-#tab1
-source /opt/ros/foxy/setup.bash
+	source /opt/ros/foxy/setup.bash
 
-. ros_dev_ws/install/setup.sh
+	. ros_dev_ws/install/setup.sh
 
-export ROS_DOMAIN_ID=100
+	export ROS_DOMAIN_ID=100
 
-ros2 launch ~/launch/waterq.py
+	ros2 launch ~/launch/pi_launch.py
 
-### ON LAPTOP ###
+### RECEIVING TOPICS from WIFI ON LAPTOP ###
 #needs to be in ~ for the dashboard to work.
-#tab2
-source /opt/ros/foxy/setup.bash
 
-. ~/Documents/wqdrone/ros_dev_ws/install/setup.sh
+	source /opt/ros/foxy/setup.bash
 
-export ROS_DOMAIN_ID=100
-ros2 launch ~/Documents/wqdrone/ros_dev_ws/launch/laptop.py
+	. ~/Documents/wqdrone/ros_dev_ws/install/setup.sh
 
-#tab3
-#Conda source
-source /home/pop/anaconda3/etc/profile.d/conda.sh
-conda activate interpol
+	export ROS_DOMAIN_ID=100
+	ros2 launch ~/Documents/wqdrone/ros_dev_ws/launch/laptop.py
 
-cd ~/Documents/wqdrone/dashboard
-python3 app.py
+### RECEIVING TOPICS from LoRa ON LAPTOP ###
+
+	source /opt/ros/foxy/setup.sh
+	. ~/Documents/wqdrone/ros_dev_ws/install/setup.sh
+	export ROS_DOMAIN_ID=100
+	ros2 launch ~/Documents/wqdrone/ros_dev_ws/launch/lora_laptop.py
+
+### CONDA DASHBOARDS ###
+## WiFi TOPIC INTERPOLATOR
+	source /home/pop/anaconda3/etc/profile.d/conda.sh
+	conda activate interpol
+
+	cd ~/Documents/wqdrone/dashboard
+	python3 app.py
+
+## LoRa Topic Mapper
+	source /home/pop/anaconda3/etc/profile.d/conda.sh
+	conda activate interpol
+	cd ~/Documents/wqdrone/dashboard_v2
+	python3 app.py
