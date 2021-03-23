@@ -1,0 +1,63 @@
+\documentclass[a4paper,12pt,twoside]{report}
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+\usepackage[style=authoryear]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO,LE]{Thesis Title}
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,CE]{Chapter \thechapter}
+\fancyfoot[CO,RE]{Author Name}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+
+\input{titles/titlepage_2}
+
+\chapter*{Abstract}
+Abstract goes here
+
+\chapter*{Acknowledgements}
+I want to thank...
+
+\tableofcontents
+\listoffigures
+
+\listoftables
+
+\chapter{Introduction}
+\input{chapters/introduction}
+
+\chapter{Theoretical Framework}
+\input{chapters/theory}
+
+\chapter{Methodology}
+\input{chapters/methods}
+
+\chapter{Results}
+\input{chapters/results}
+
+\chapter{Discussion}
+\input{chapters/discussion}
+
+\chapter{Conclusion}
+\input{chapters/conclusion}
+
+\appendix
+\chapter{Appendix Title}
+\input{chapters/appendix}
+
+\printbibliography
+\end{document}
