@@ -5,7 +5,7 @@ import time
 from rclpy.node import Node
 
 from sensor_msgs.msg import NavSatFix
-
+from std_msgs.msg import String
 '''
 When troubleshooting, please take out the try statement. Doublecheck the get_logger info as well.
 '''

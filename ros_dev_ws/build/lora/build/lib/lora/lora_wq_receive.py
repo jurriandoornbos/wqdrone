@@ -3,7 +3,7 @@ import serial
 import time
 
 from rclpy.node import Node
-from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import Float64MultiArray, String
 
 
 class MinimalPublisher(Node):

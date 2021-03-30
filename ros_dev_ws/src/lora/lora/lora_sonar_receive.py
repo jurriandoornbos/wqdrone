@@ -4,7 +4,7 @@ import time
 
 from rclpy.node import Node
 
-from std_msgs.msg import UInt32
+from std_msgs.msg import UInt32, String
 
 
 class MinimalPublisher(Node):

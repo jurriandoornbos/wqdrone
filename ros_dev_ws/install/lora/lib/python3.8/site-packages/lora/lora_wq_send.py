@@ -27,11 +27,10 @@ class MinimalSubscriber(Node):
         The idea is that for every topic, there is a LoRa Comms module available
         send + receive for each one. End of a line is hardcoded in the Arduino module as "$"
     	'''
-        ser = serial.Serial(device, baudrate = 9600,timeout=0.1,write_timeout=0.1)
         s = "wq_sensors: " + str(msg.data) + "$"
         ser.write(s.encode("ascii"))
         self.get_logger().info('Sent LoRa msg: %s' % s)
-        ser.close()
+
 
 def main(args=None):
     rclpy.init(args=args)
