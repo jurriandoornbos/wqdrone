@@ -21,15 +21,15 @@ def generate_launch_description():
 	    namespace = "lr",
 	    executable = "wq_send"),
 	    
-	Node(
-	    package = "lora",
-	    namespace = "lr",
-	    executable = "sonar_send"),
+	#Node(
+	#    package = "lora",
+	#    namespace = "lr",
+	#    executable = "sonar_send"),
 	    
-	Node(
-	    package = "lora",
-	    namespace = "lr",
-	    executable = "wq_gps_send"),
+	#Node(
+	#    package = "lora",
+	#    namespace = "lr",
+	#    executable = "wq_gps_send"),
 	Node(
 	    package = "lora",
 	    executable = "cmd_receive"),
