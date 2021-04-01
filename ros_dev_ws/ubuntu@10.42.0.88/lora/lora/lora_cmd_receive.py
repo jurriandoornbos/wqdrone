@@ -6,7 +6,7 @@ from rclpy.node import Node
 
 from geometry_msgs.msg import Twist
 
-device = "/dev/ttyUSB1"
+device = "/dev/ttyLoRa"
 ser = serial.Serial(device, 115200)
 time.sleep(3)
 
