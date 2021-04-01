@@ -20,21 +20,21 @@ def load_db3(db_loc):
     topics = pd.read_sql("SELECT * from topics", con)
     msgs = pd.read_sql("SELECT * from messages", con)
 
-    dist_id = topics.id[topics["name"].str.contains("sonar_lora")]
+    dist_id = topics.id[topics["name"].str.contains("sonar_dist")]
     
     ### change for other GPS TOPIC ###
-    gps_id = topics.id[topics["name"].str.contains("gps_lora")]
+    gps_id = topics.id[topics["name"].str.contains("teensy_fix")]
     
     
-    sensor_id = topics.id[topics["name"].str.contains("wq_lora")]
+    sensor_id = topics.id[topics["name"].str.contains("wq_sensors")]
 
     df= msgs.loc[msgs["topic_id"].isin([dist_id,gps_id,sensor_id])].reset_index()
 
 
     #Preprocess data from the sonar from bytearrat to individual column
-    distdf = msgs.loc[msgs["topic_id"].isin(dist_id)].reset_index()
-    distdf["distance"] = distdf["data"].apply(uint32)
-    distdf = distdf.drop("data",1)
+    #distdf = msgs.loc[msgs["topic_id"].isin(dist_id)].reset_index()
+    #distdf["distance"] = distdf["data"].apply(uint32)
+    #distdf = distdf.drop("data",1)
 
 
     #Preprocess data of the gps from bytearrays to individual columns gpdf
@@ -56,8 +56,10 @@ def load_db3(db_loc):
     sdf["topic_id"] = sensordf["topic_id"]
     
     # and remerge the dataset back to a nice, tidy DF    
-    df = pd.merge_asof(distdf,gpdf, on = "timestamp")
+    #df = pd.merge_asof(distdf,gpdf, on = "timestamp")
+    df = gpdf
     df = pd.merge_asof(df, sdf, on = "timestamp").dropna()
+    
     con.close()
     return df
 
