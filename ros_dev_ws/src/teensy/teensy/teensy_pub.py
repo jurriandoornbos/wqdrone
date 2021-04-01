@@ -10,7 +10,7 @@ from sensor_msgs.msg import NavSatFix
 
 from rclpy.executors import SingleThreadedExecutor
 
-port = "/dev/ttyACM0"
+port = "/dev/ttyTeensy"
 
 ser = serial.Serial(port, 115200)
 time.sleep(2)
@@ -72,7 +72,7 @@ class SensorPublisher(Node):
     def __init__(self):
         super().__init__('sensor_publisher')
         self.sensor_publisher_ = self.create_publisher(Float64MultiArray, 'wq_sensors', 10)
-        timer_period = 1 # seconds
+        timer_period = 0.5 # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
  
     def timer_callback(self):
