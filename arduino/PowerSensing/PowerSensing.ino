@@ -96,7 +96,7 @@ void loop(){
   for (int x = 0; x < 20; x++){ //Get 20 samples
   AcsValue = analogRead(Amp1Pin);     //Read current sensor values   
   Samples = Samples + AcsValue;  //Add samples together
-  delay (2); // let ADC settle before next sample 3ms
+  delay (2); // let ADC settle before next sample 2ms
   }
   
   AvgAcs=Samples/20.0;//Taking Average of Samples

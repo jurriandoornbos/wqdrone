@@ -1,0 +1,6 @@
+Temp = D4
+v0 = A0
+a0 = A1
+
+GPS = D7-D8 S1
+sensduino = D0-D1 S2

@@ -1,0 +1,12 @@
+temp = D4
+v0 = A0 = mL
+v1 = A1 = mR
+v2 = A2 = BoxV
+a0 = A3 = mL
+a1 = A4 = mR
+a2 = A5 = BoxA
+
+w0 = D2
+w1 = D3
+
+Buz = D5
