@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>kogger_sonar</name>
+  <name>powermon</name>
   <version>0.0.0</version>
-  <description>Kogger Sonar package for acquiring depth information via the USB connection</description>
-  <maintainer email="jurrian.doornbos@wur.nl">Jurrian Doornbos</maintainer>
-  <license>Apache License 2.0</license>
+  <description>TODO: Package description</description>
+  <maintainer email="59558756+jurriandoornbos@users.noreply.github.com">pop</maintainer>
+  <license>TODO: License declaration</license>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
@@ -14,9 +14,5 @@
 
   <export>
     <build_type>ament_python</build_type>
-    <exec_depend>rclpy</exec_depend>
-    <exec_depend>std_msgs</exec_depend>
-    <exec_depend>serial</exec_depend>
-
   </export>
 </package>
