@@ -1,0 +1,16 @@
+package.xml
+setup.cfg
+setup.py
+../../build/powermon/powermon.egg-info/PKG-INFO
+../../build/powermon/powermon.egg-info/SOURCES.txt
+../../build/powermon/powermon.egg-info/dependency_links.txt
+../../build/powermon/powermon.egg-info/entry_points.txt
+../../build/powermon/powermon.egg-info/requires.txt
+../../build/powermon/powermon.egg-info/top_level.txt
+../../build/powermon/powermon.egg-info/zip-safe
+powermon/__init__.py
+powermon/powerpub.py
+resource/powermon
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/powermon/powermon.egg-info/PKG-INFO
+writing dependency_links to ../../build/powermon/powermon.egg-info/dependency_links.txt
+writing entry points to ../../build/powermon/powermon.egg-info/entry_points.txt
+writing requirements to ../../build/powermon/powermon.egg-info/requires.txt
+writing top-level names to ../../build/powermon/powermon.egg-info/top_level.txt
+reading manifest file '../../build/powermon/powermon.egg-info/SOURCES.txt'
+writing manifest file '../../build/powermon/powermon.egg-info/SOURCES.txt'
+running build
+running build_py
+copying powermon/powerpub.py -> /home/pop/Documents/wqdrone/ros_dev_ws/build/powermon/build/lib/powermon
+running install
+running install_lib
+copying /home/pop/Documents/wqdrone/ros_dev_ws/build/powermon/build/lib/powermon/powerpub.py -> /home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/python3.8/site-packages/powermon
+byte-compiling /home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/python3.8/site-packages/powermon/powerpub.py to powerpub.cpython-38.pyc
+running install_data
+running install_egg_info
+removing '/home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/python3.8/site-packages/powermon-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/powermon/powermon.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/python3.8/site-packages/powermon-0.0.0-py3.8.egg-info
+running install_scripts
+Installing power_pub script to /home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/powermon
+writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/powermon/install.log'

@@ -13,13 +13,13 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='pop',
-    maintainer_email='59558756+jurriandoornbos@users.noreply.github.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='Jurrian Doornbos',
+    maintainer_email='jurrian.doornbos@wur.nl',
+    description='Acquiring arduino data and publish on a set of topics',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        ],
+        "power_pub = powermon.powerpub:main",],
     },
 )

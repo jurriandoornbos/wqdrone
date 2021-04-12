@@ -30,10 +30,13 @@ int counter =0;
 
 #define SCOUNT  30           // sum of sample point
 
+#define V2Pin A2
 #define V1Pin A1
 #define V0Pin A0
 
-#define Amp0Pin A2
+#define Amp0Pin A3
+#define Amp1Pin A4
+#define Amp2Pin A5
 int BuzPin = 5;
 int Water0Pin = 2;
 int Water1Pin = 3;
@@ -60,22 +63,24 @@ void loop(){
   // Read the voltage sensors
   int sensorValue0 = analogRead(V0Pin);
   int sensorValue1 = analogRead(V1Pin);
+  int sensorValue2 = analogRead(V2Pin);
   // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
   float voltage0 = sensorValue0 * (5.0 / 1023.0) * 5;
   float voltage1 = sensorValue1 * (5.0 / 1023.0) * 5;
+  float voltage2 = sensorValue2 * (5.0 / 1023.0) * 5;
 
 
   // Read the Current Sensor ACS712
   unsigned int x=0;
   float AcsValue=0.0,Samples=0.0,AvgAcs=0.0,ampere0=0.0;
 
-  for (int x = 0; x < 30; x++){ //Get 30 samples
+  for (int x = 0; x < 20; x++){ //Get 20 samples
   AcsValue = analogRead(Amp0Pin);     //Read current sensor values   
   Samples = Samples + AcsValue;  //Add samples together
   delay (2); // let ADC settle before next sample 3ms
   }
   
-  AvgAcs=Samples/30.0;//Taking Average of Samples
+  AvgAcs=Samples/20.0;//Taking Average of Samples
 
   //((AvgAcs * (5.0 / 1024.0)) is converitng the read voltage in 0-5 volts
   //2.5 is offset(I assumed that arduino is working on 5v so the viout at no current comes
@@ -86,6 +91,43 @@ void loop(){
   //0.066v '''Version30A
   ampere0 = (2.5 - (AvgAcs * (5.0 / 1024.0)) )/0.185;
 
+  //Rinse, repeat for Amp1
+  float ampere1=0.0;
+  for (int x = 0; x < 20; x++){ //Get 20 samples
+  AcsValue = analogRead(Amp1Pin);     //Read current sensor values   
+  Samples = Samples + AcsValue;  //Add samples together
+  delay (2); // let ADC settle before next sample 3ms
+  }
+  
+  AvgAcs=Samples/20.0;//Taking Average of Samples
+
+  //((AvgAcs * (5.0 / 1024.0)) is converitng the read voltage in 0-5 volts
+  //2.5 is offset(I assumed that arduino is working on 5v so the viout at no current comes
+  //out to be 2.5 which is out offset. If your arduino is working on different voltage than 
+  //you must change the offset according to the input voltage)
+  //0.185v(185mV) is rise in output voltage when 1A current flows at input Version5A
+  //0.100v '' Version20A
+  //0.066v '''Version30A
+  ampere1 = (2.5 - (AvgAcs * (5.0 / 1024.0)) )/0.185;
+
+    //Rinse, repeat vor Amp2
+  float ampere2=0.0;
+  for (int x = 0; x < 20; x++){ //Get 20 samples
+  AcsValue = analogRead(Amp2Pin);     //Read current sensor values   
+  Samples = Samples + AcsValue;  //Add samples together
+  delay (2); // let ADC settle before next sample 3ms
+  }
+  
+  AvgAcs=Samples/20.0;//Taking Average of Samples
+
+  //((AvgAcs * (5.0 / 1024.0)) is converitng the read voltage in 0-5 volts
+  //2.5 is offset(I assumed that arduino is working on 5v so the viout at no current comes
+  //out to be 2.5 which is out offset. If your arduino is working on different voltage than 
+  //you must change the offset according to the input voltage)
+  //0.185v(185mV) is rise in output voltage when 1A current flows at input Version5A
+  //0.100v '' Version20A
+  //0.066v '''Version30A
+  ampere2 = (2.5 - (AvgAcs * (5.0 / 1024.0)) )/0.185;
 
   // Read the water sensors
   int WaterValue0 = digitalRead(Water0Pin);
@@ -114,9 +156,21 @@ void loop(){
   Serial.print(voltage1);
   Serial.print("V | ");
 
+  Serial.print("Voltage2: ");
+  Serial.print(voltage2);
+  Serial.print("V | ");
+  
   //print the current sensors
   Serial.print("Ampere0: ");
   Serial.print(ampere0);
+  Serial.print("A | ");
+  //print the current sensors
+  Serial.print("Ampere1: ");
+  Serial.print(ampere1);
+  Serial.print("A | ");
+  //print the current sensors
+  Serial.print("Ampere2: ");
+  Serial.print(ampere2);
   Serial.print("A | ");
 
 

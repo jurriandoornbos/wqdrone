@@ -1,0 +1,10 @@
+Metadata-Version: 1.2
+Name: powermon
+Version: 0.0.0
+Summary: Acquiring arduino data and publish on a set of topics
+Home-page: UNKNOWN
+Maintainer: Jurrian Doornbos
+Maintainer-email: jurrian.doornbos@wur.nl
+License: Apache License 2.0
+Description: UNKNOWN
+Platform: UNKNOWN

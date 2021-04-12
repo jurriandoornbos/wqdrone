@@ -6,7 +6,7 @@ from rclpy.node import Node
 
 from geometry_msgs.msg import Twist
 
-device = "/dev/ttyLoRa"
+device = "/dev/ttyUSB1"
 ser = serial.Serial(device, 115200)
 time.sleep(3)
 
@@ -19,7 +19,7 @@ class VelReceive(Node):
     def __init__(self):
         super().__init__('lora_cmd_rec')
         self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10)
-        timer_period = 0.1# seconds
+        timer_period = 1# seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
     def timer_callback(self):
