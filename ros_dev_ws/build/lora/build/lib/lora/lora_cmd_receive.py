@@ -6,9 +6,8 @@ from rclpy.node import Node
 
 from geometry_msgs.msg import Twist
 
-device = "/dev/ttyUSB1"
-ser = serial.Serial(device, 115200)
-time.sleep(3)
+from rclpy.exceptions import ParameterNotDeclaredException
+from rcl_interfaces.msg import ParameterType
 
 '''
 When troubleshooting, please take out the try statement. Doublecheck the get_logger info as well.
@@ -21,10 +20,14 @@ class VelReceive(Node):
         self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10)
         timer_period = 1# seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.declare_parameter("device", "/dev/ttyLoRa")
+        device = self.get_parameter('device').get_parameter_value().string_value
+        self.ser = serial.Serial(device,baudrate =115200, timeout=0.1,write_timeout=0.1)
+        time.sleep(3)
 
     def timer_callback(self):
         msg = Twist()
-        s = ser.readline()
+        s = self.ser.readline()
         r = s.decode("ascii")
         if len(r)>4 and r[0:11] == "teleop_lora":
                 try:

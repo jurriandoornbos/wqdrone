@@ -1,0 +1,21 @@
+[1.124s] Invoking command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/powermon': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/powermon build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/powermon/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/powermon --record /home/pop/Documents/wqdrone/ros_dev_ws/build/powermon/install.log --single-version-externally-managed
+[1.533s] running egg_info
+[1.534s] writing ../../build/powermon/powermon.egg-info/PKG-INFO
+[1.535s] writing dependency_links to ../../build/powermon/powermon.egg-info/dependency_links.txt
+[1.536s] writing entry points to ../../build/powermon/powermon.egg-info/entry_points.txt
+[1.537s] writing requirements to ../../build/powermon/powermon.egg-info/requires.txt
+[1.537s] writing top-level names to ../../build/powermon/powermon.egg-info/top_level.txt
+[1.613s] reading manifest file '../../build/powermon/powermon.egg-info/SOURCES.txt'
+[1.615s] writing manifest file '../../build/powermon/powermon.egg-info/SOURCES.txt'
+[1.616s] running build
+[1.616s] running build_py
+[1.617s] running install
+[1.619s] running install_lib
+[1.622s] running install_data
+[1.623s] running install_egg_info
+[1.628s] removing '/home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/python3.8/site-packages/powermon-0.0.0-py3.8.egg-info' (and everything under it)
+[1.629s] Copying ../../build/powermon/powermon.egg-info to /home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/python3.8/site-packages/powermon-0.0.0-py3.8.egg-info
+[1.631s] running install_scripts
+[1.671s] Installing power_pub script to /home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/powermon
+[1.673s] writing list of installed files to '/home/pop/Documents/wqdrone/ros_dev_ws/build/powermon/install.log'
+[1.765s] Invoked command in '/home/pop/Documents/wqdrone/ros_dev_ws/src/powermon' returned '0': PYTHONPATH=/home/pop/Documents/wqdrone/ros_dev_ws/install/powermon/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/powermon build --build-base /home/pop/Documents/wqdrone/ros_dev_ws/build/powermon/build install --prefix /home/pop/Documents/wqdrone/ros_dev_ws/install/powermon --record /home/pop/Documents/wqdrone/ros_dev_ws/build/powermon/install.log --single-version-externally-managed

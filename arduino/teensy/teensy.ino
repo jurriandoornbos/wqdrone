@@ -16,6 +16,19 @@
 
 #include <Streamers.h>
 
+
+//Temperature sensor stuff
+#include <OneWire.h>
+#include <DallasTemperature.h>
+#define ONE_WIRE_BUS 15
+OneWire oneWire(ONE_WIRE_BUS);
+DallasTemperature sensors(&oneWire);
+
+
+//PowerSensing setup
+
+#define Amp0Pin A0
+
 //------------------------------------------------------------
 // This object parses received characters
 //   into the gps.fix() data structure
@@ -38,18 +51,6 @@ char receivedChars[numChars];
 
 boolean newData = false;
 
-//setup power sensing pins
-#define V0Pin A0
-#define Amp0Pin A1
-
-// setup temperature stuff
-// Data wire is plugged into digital pin 2 on the Arduino
-#define ONE_WIRE_BUS 4
-// Setup a oneWire instance to communicate with any OneWire device
-OneWire oneWire(ONE_WIRE_BUS);  
-
-// Pass oneWire reference to DallasTemperature library
-DallasTemperature sensors(&oneWire);
 
 void setup() {
     Serial.begin(115200);
@@ -62,10 +63,13 @@ void setup() {
 }
 
 void loop() {
+
     recvWithStartEndMarkers();
     showNewData();
     GPSloop();
-    powerSensing();
+    
+    
+    
 }
 
 
@@ -83,7 +87,7 @@ static void doSomeWork()
   //Printed things: status, UTC, Date/Time, Lat, Lon, Hdg, Spd, Alt, Sats, Rx ok, Rx err, RX chars
   Serial.print("GPS///");
   trace_all( DEBUG_PORT, gps, fix );
-
+  
 } 
 
 
@@ -94,12 +98,14 @@ static void GPSloop()
   while (gps.available( gpsPort )) {
     fix = gps.read();
     doSomeWork();
+    
   }
 
 } 
 
 
 void recvWithStartEndMarkers() {
+    
     static boolean recvInProgress = false;
     static byte ndx = 0;
     char startMarker = '<';
@@ -137,10 +143,12 @@ void showNewData() {
         Serial.print(receivedChars);
         Serial.println(">");
         newData = false;
-    }
+        powerSensing();
+        }
 }
 
 void powerSensing() {
+
     //read the temp sensor
     sensors.requestTemperatures(); 
 
@@ -149,13 +157,13 @@ void powerSensing() {
     unsigned int x=0;
     float AcsValue=0.0,Samples=0.0,AvgAcs=0.0,ampere0=0.0;
 
-    for (int x = 0; x < 20; x++){ //Get 20 samples
+    for (int x = 0; x < 30; x++){ //Get 20 samples
     AcsValue = analogRead(Amp0Pin);     //Read current sensor values   
     Samples = Samples + AcsValue;  //Add samples together
-    delay (2); // let ADC settle before next sample 3ms
+    delay(1); // let ADC settle before next sample 3ms
     }
   
-    AvgAcs=Samples/20.0;//Taking Average of Samples
+    AvgAcs=Samples/30.0;//Taking Average of Samples
 
     //((AvgAcs * (5.0 / 1024.0)) is converitng the read voltage in 0-5 volts
     //2.5 is offset(I assumed that arduino is working on 5v so the viout at no current comes
@@ -164,24 +172,16 @@ void powerSensing() {
     //0.185v(185mV) is rise in output voltage when 1A current flows at input Version5A
     //0.100v '' Version20A
     //0.066v '''Version30A
-    ampere0 = (1.5 - (AvgAcs * (3.0 / 4096.0)) )/0.185;
-  
-
-    int sensorValue0 = analogRead(V0Pin);
-    float voltage0 = sensorValue0 * (3.0 / 4096.0) * 5;
-    
-    Serial.print("<PowerSensing ");
+    ampere0 = (1.65 - (AvgAcs * (3.30/ 4096.0)) )/0.185;
+   
+    Serial.print("PowerSensing///");
     Serial.print("Temperature: ");
     Serial.print(sensors.getTempCByIndex(0));
     Serial.print("C | ");
-     //print the voltage readings
-    Serial.print("Voltage0: ");
-    Serial.print(voltage0);
-    Serial.print("V | ");
       //print the current sensors
     Serial.print("Ampere0: ");
     Serial.print(ampere0);
-    Serial.print("A > ");
-    
-}
+    Serial.println("A ");
+    exit;
+         
 }

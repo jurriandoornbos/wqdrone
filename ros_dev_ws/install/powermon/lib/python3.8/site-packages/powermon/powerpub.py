@@ -5,7 +5,10 @@ from rclpy.node import Node
 
 from std_msgs.msg import String, Float32MultiArray
 
-ser =serial.Serial("/dev/ttyUSB0",115200)
+from rclpy.exceptions import ParameterNotDeclaredException
+from rcl_interfaces.msg import ParameterType
+
+
 class PowerPublisher(Node):
 
     def __init__(self):
@@ -17,13 +20,19 @@ class PowerPublisher(Node):
         self.box_ = self.create_publisher(Float32MultiArray, 'box_mon', 10)
         timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
+        
+        self.declare_parameter("device", "/dev/ttyPowerMon")
+        
+        device = self.get_parameter('device').get_parameter_value().string_value
+        self.ser = serial.Serial(device,baudrate =115200)
+
 
     def timer_callback(self):
         '''
         Example msg over serial:
         PowerSensingDuino Temperature: -127.00C | Voltage0: 0.00V | Voltage1: 0.00V | Voltage2: 0.00V | Ampere0: 10.17A | Ampere1: 10.17A | Ampere2: 10.17A | Water0: 1 | Water1: 1 | 
         '''
-        data = ser.readline()
+        data = self.ser.readline()
         data = data.decode("utf-8")
         if len(data)>10:
             ardu_msg = String()           

@@ -6,10 +6,9 @@ from rclpy.node import Node
 
 from geometry_msgs.msg import Twist
 
-device = "/dev/ttyLoRa"
-ser = serial.Serial(device, baudrate = 115200,timeout=0.1,write_timeout=0.1)
+from rclpy.exceptions import ParameterNotDeclaredException
+from rcl_interfaces.msg import ParameterType
 
-time.sleep(3)
 
 class MinimalSubscriber(Node):
 
@@ -20,7 +19,12 @@ class MinimalSubscriber(Node):
             '/ttk/teleop_lora',
             self.listener_callback,
             10)
+        self.declare_parameter("device", "/dev/ttyLoRa")
+        device = self.get_parameter('device').get_parameter_value().string_value
+        self.ser = serial.Serial(device,baudrate =115200, timeout=0.1,write_timeout=0.1)
+        time.sleep(3)
         self.subscription  # prevent unused variable warning
+        
 
     def listener_callback(self, msg):
         '''
@@ -28,7 +32,7 @@ class MinimalSubscriber(Node):
         send + receive for each one. End of a line is hardcoded in the Arduino module as "$"
     	'''
         s = "teleop_lora: " + " lx: " + str(msg.linear.x) + " az: " + str(msg.angular.z) + " $"
-        ser.write(s.encode("ascii"))
+        self.ser.write(s.encode("ascii"))
         self.get_logger().info('Sent LoRa msg: %s' % s)
 
 def main(args=None):

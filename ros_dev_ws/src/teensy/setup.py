@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
         "teensy_pub = teensy.teensy_pub:main",
         "gps = teensy.gps:main",
-        "sensor = teensy.sensor:main"],
+        "sensor = teensy.sensor:main",
+        "serial_pub = teensy.serial_pub:main",],
     },
 )

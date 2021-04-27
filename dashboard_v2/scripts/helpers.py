@@ -58,7 +58,7 @@ def load_db3(db_loc):
     # and remerge the dataset back to a nice, tidy DF    
     #df = pd.merge_asof(distdf,gpdf, on = "timestamp")
     df = gpdf
-    df = pd.merge_asof(df, sdf, on = "timestamp").dropna()
+    df = pd.merge_asof(df, sdf, on = "timestamp")
     
     con.close()
     return df
