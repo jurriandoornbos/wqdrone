@@ -25,6 +25,9 @@ import dash_daq as daq
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+import geopandas as gpd
+
+
 
 import plotly.express as px
 
@@ -33,7 +36,8 @@ import os
 from scripts.helpers import load_db3, gdf_builder, interkrige, rasterbuilder, html_points, html_raster, reducer
 
 #Set file location names
-rosbagname = "test3_Mar30"
+rosbagname = "test2_Mar30"
+
 db_loc = os.path.join(os.path.expanduser('~'), rosbagname , rosbagname+"_0.db3")
 
 gdf = gdf_builder(load_db3(db_loc))
@@ -43,7 +47,7 @@ gdf = gdf_builder(load_db3(db_loc))
 app_color = {"graph_bg": "#082255", "graph_line": "#007ACE"}
 
 
-fig1 = px.line(gdf, y= ['tds'], x = 'timestamp', width = 400, height =400, color_discrete_sequence = px.colors.sequential.turbid)
+fig1 = px.line(gdf, y= 'tds', x = 'timestamp', width = 400, height =400, color_discrete_sequence = px.colors.sequential.turbid)
 
 
 fig1.update_layout(
@@ -54,7 +58,7 @@ fig1.update_layout(
 )
 fig1.update_xaxes(showticklabels=False)
 
-fig2 = px.line(gdf,y = ['ph','turb'], x = "timestamp", width = 400, height =400, color_discrete_sequence = px.colors.sequential.Plasma)
+fig2 = px.line(gdf,y = ['ph_v','t_v'], x = "timestamp", width = 400, height =400, color_discrete_sequence = px.colors.sequential.Plasma)
 
 
 fig2.update_layout(
@@ -62,7 +66,8 @@ fig2.update_layout(
     paper_bgcolor=app_color['graph_bg'],
     font_color=app_color['graph_line'],
     annotations=[], overwrite=True
-)
+    )
+    
 fig2.update_xaxes(showticklabels=False)
 
 
@@ -77,8 +82,6 @@ app = dash.Dash(
 )
 
 server = app.server
-
-
 
 
 app.layout = html.Div(
@@ -158,7 +161,7 @@ app.layout = html.Div(
                                 ),
                                 dcc.Interval(
                                     id="turb-ph-update",
-                                    interval=1000,
+                                    interval=2000,
                                     n_intervals=0,
                                 ),
                             ],
@@ -185,7 +188,7 @@ app.layout = html.Div(
                                 ),
                                 dcc.Interval(
                                     id="tds-update",
-                                    interval=1000,
+                                    interval=2000,
                                     n_intervals=0,
                                 ),
                             ],
@@ -205,10 +208,8 @@ app.layout = html.Div(
                         color="#92e0d3",
                         backgroundColor="#1e2130",
                         size=50,
-                    ),
-                    dcc.Interval(id="ph-b-update",
-                                interval=1000,
-                                n_intervals=0)],
+                    )],
+                    
                 
                     
             ),
@@ -257,9 +258,12 @@ app.layout = html.Div(
                 
                     
             ),
-            ],
+            dcc.Interval(id="ph-b-update",
+                                interval=1000,
+                                n_intervals=0)],
                              
-                className = "three columns buttons"),        
+                className = "three columns buttons"),
+   
             ],
             className="app__content",
         ),
@@ -273,13 +277,20 @@ def get_current_time():
     now = dt.datetime.now()
     total_time = (now.hour * 3600) + (now.minute * 60) + (now.second)
     return total_time
-    
+
+@app.callback(Output("intermediate-value", 'data'),
+             [Input('ph-b-update', 'n_intervals')])    
+
+def redo_data():
+    gdf = gdf_builder(load_db3(db_loc))
+    return gdf.to_file('dataframe.geojson', driver='GeoJSON')  
 
 @app.callback(Output("point-temp-map", 'figure'),
              [Input('point-temp-update', 'n_intervals')])
 
 def update_plots(n):
-    gdf = gdf_builder(load_db3(db_loc))
+    filename = "dataframe.geojson"
+    gdf = gpd.read_file(open(filename))
     
     temp = px.scatter_mapbox(gdf, lat="lat", lon = "lon",color = "temp",mapbox_style = bm, zoom = 18, width = 800, height =800)
     temp.update_traces(marker_showscale = False, marker_colorbar_x = 0.9, selector=dict(type='scattermapbox'))
@@ -292,8 +303,9 @@ def update_plots(n):
 
 
 def update_plots(n):
-    gdf = gdf_builder(load_db3(db_loc))
-    fig2 = px.line(gdf,y = ['ph','turb'], x = "timestamp", width = 400, height =400, color_discrete_sequence = px.colors.qualitative.Pastel1)
+    filename = "dataframe.geojson"
+    gdf = gpd.read_file(open(filename))
+    fig2 = px.line(gdf,y = ['ph_v','t_v'], x = "timestamp", width = 400, height =400, color_discrete_sequence = px.colors.qualitative.Pastel1)
 
 
     fig2.update_layout(
@@ -312,7 +324,8 @@ def update_plots(n):
               [Input('tds-update', 'n_intervals')])
 
 def update_maps(n):
-    gdf = gdf_builder(load_db3(db_loc))
+    filename = "dataframe.geojson"
+    gdf = gpd.read_file(open(filename))
     fig1 = px.scatter(gdf, y= ['tds'], x = 'timestamp', width = 400, height =400, color_discrete_sequence = px.colors.qualitative.Pastel2)
 
 
@@ -326,14 +339,16 @@ def update_maps(n):
     
     return (fig1)
 
+
 @app.callback(Output('ph-led',"value"),Output('tds-led', "value"),Output('turb-led', "value"),Output('temp-led', "value"),
     [Input("ph-b-update", "n_intervals")])
-
+    
 def update_buttons(n):
-    gdf = gdf_builder(load_db3(db_loc))
-    ph = gdf["ph"].iloc[-1]
+    filename = "dataframe.geojson"
+    gdf = gpd.read_file(open(filename))
+    ph = gdf["ph_v"].iloc[-1]
     tds = gdf["tds"].iloc[-1]
-    turb = gdf["turb"].iloc[-1]
+    turb = gdf["t_v"].iloc[-1]
     temp = gdf["temp"].iloc[-1]
     return f'{ph:.2f}', f'{tds:.2f}', f'{turb:.2f}', f'{temp:.2f}'
 

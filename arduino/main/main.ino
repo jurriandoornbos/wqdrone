@@ -2,7 +2,7 @@
 #include <GravityTDS.h>
 #include <OneWire.h>
 
-#define SCOUNT  30           // sum of sample point
+#define SCOUNT 30           // sum of sample point
 
 #define TdsSensorPin A1
 #define TurbPin A0
@@ -42,10 +42,10 @@ void setup()
 void loop() 
 {
    static unsigned long analogSampleTimepoint = millis();
-   static float turbVoltage, turbNTU, medianTurb, medianTurb_v;
+   static float tdsValue, turbVoltage, turbNTU, medianTurb, medianTurb_v;
    static int turbValue;
       
-   if(millis()-analogSampleTimepoint > 40U)     //every 40 milliseconds,read the analog value from the ADC
+   if(millis()-analogSampleTimepoint > 4U)     //every 40 milliseconds,read the analog value from the ADC
    {
      //Temperature sampling, temperature is also used in TDS adjustment
      temperature = getTemp();  //add your temperature sensor and read it
@@ -85,7 +85,7 @@ void loop()
    {
       //Temperature filtering and printing
       printTimepoint = millis();
-      medianTemp = getMedianNum(analogBufferTemp, SCOUNT);
+      medianTemp = getMeanNum(analogBufferTemp, SCOUNT);
 
       Serial.print("<Temperature: ");
       Serial.print(medianTemp,3);
@@ -94,7 +94,7 @@ void loop()
       
       //TDS printing and filtering
       printTimepoint = millis();
-      medianTDS = getMedianNum(analogBufferTDS,SCOUNT);
+      medianTDS = getMeanNum(analogBufferTDS,SCOUNT);
 
       Serial.print("TDS: ");          
       Serial.print(medianTDS,0);
@@ -103,8 +103,8 @@ void loop()
       
       //Turb filtering and printing
       printTimepoint = millis();
-      medianTurb = getMedianNum(analogBufferTurb, SCOUNT);
-      medianTurb_v = getMedianNum(analogBufferTurb_v,SCOUNT);
+      medianTurb = getMeanNum(analogBufferTurb, SCOUNT);
+      medianTurb_v = getMeanNum(analogBufferTurb_v,SCOUNT);
       
       Serial.print("Turbidity: ");
       Serial.print(medianTurb);
@@ -115,8 +115,8 @@ void loop()
 
       //pH filtering and printing
       printTimepoint = millis();
-      medianPH = getMedianNum(analogBufferPH, SCOUNT);
-      medianPH_v = getMedianNum(analogBufferPH_v, SCOUNT);
+      medianPH = getMeanNum(analogBufferPH, SCOUNT);
+      medianPH_v = getMeanNum(analogBufferPH_v, SCOUNT);
       Serial.print("Acidity: ");
       Serial.print(medianPH);
       Serial.print(" PH // ");
@@ -153,6 +153,19 @@ float getMedianNum(float bArray[], int iFilterLen)
       else
     bTemp = (bTab[iFilterLen / 2] + bTab[iFilterLen / 2 - 1]) / 2;
       return bTemp;
+}
+//meanfilter
+float getMeanNum(float bArray[], int Samples)
+{
+    int index;
+    float sum, result;
+    sum = 0.0;
+    
+    for(index = 0; index < sizeof(bArray);index++)
+    {sum += bArray[index];}
+    result = sum/sizeof(bArray);
+    return result;
+
 }
 
 

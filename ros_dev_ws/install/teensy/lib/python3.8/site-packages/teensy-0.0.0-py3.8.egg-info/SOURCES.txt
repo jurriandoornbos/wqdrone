@@ -12,6 +12,7 @@ resource/teensy
 teensy/__init__.py
 teensy/gps.py
 teensy/sensor.py
+teensy/serial_pub.py
 teensy/teensy_pub.py
 test/test_copyright.py
 test/test_flake8.py

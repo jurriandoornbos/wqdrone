@@ -8,7 +8,8 @@ def generate_launch_description():
 	    package = "lora",
 	    namespace = "lr",
 	    executable = "cmd_send",
-	    output = "screen"),
+	    output = "screen",
+	    parameters = [{"device": "/dev/ttyUSB0"}]),
 		
 	Node(
 	    package = "teleop_twist_keyboard",
