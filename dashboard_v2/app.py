@@ -36,7 +36,7 @@ import os
 from scripts.helpers import load_db3, gdf_builder, interkrige, rasterbuilder, html_points, html_raster, reducer
 
 #Set file location names
-rosbagname = "test2_Mar30"
+rosbagname = "test9_April28"
 
 db_loc = os.path.join(os.path.expanduser('~'), rosbagname , rosbagname+"_0.db3")
 
@@ -161,7 +161,7 @@ app.layout = html.Div(
                                 ),
                                 dcc.Interval(
                                     id="turb-ph-update",
-                                    interval=2000,
+                                    interval=6000,
                                     n_intervals=0,
                                 ),
                             ],
@@ -186,11 +186,7 @@ app.layout = html.Div(
                                         )
                                     ),
                                 ),
-                                dcc.Interval(
-                                    id="tds-update",
-                                    interval=2000,
-                                    n_intervals=0,
-                                ),
+                                
                             ],
                             className="graph__container second",
                         ),
@@ -259,7 +255,7 @@ app.layout = html.Div(
                     
             ),
             dcc.Interval(id="ph-b-update",
-                                interval=1000,
+                                interval=5000,
                                 n_intervals=0)],
                              
                 className = "three columns buttons"),
@@ -278,12 +274,13 @@ def get_current_time():
     total_time = (now.hour * 3600) + (now.minute * 60) + (now.second)
     return total_time
 
-@app.callback(Output("intermediate-value", 'data'),
-             [Input('ph-b-update', 'n_intervals')])    
+#@app.callback(Output("intermediate-value", 'data'),
+#             [Input('ph-b-update', 'n_intervals')])    
 
-def redo_data():
-    gdf = gdf_builder(load_db3(db_loc))
-    return gdf.to_file('dataframe.geojson', driver='GeoJSON')  
+#def redo_data():
+##    gdf = gdf_builder(load_db3(db_loc))
+#    gdf.to_file('dataframe.geojson', driver='GeoJSON')  
+#    return gdf.to_file('dataframe.geojson', driver='GeoJSON')  
 
 @app.callback(Output("point-temp-map", 'figure'),
              [Input('point-temp-update', 'n_intervals')])
@@ -295,10 +292,11 @@ def update_plots(n):
     temp = px.scatter_mapbox(gdf, lat="lat", lon = "lon",color = "temp",mapbox_style = bm, zoom = 18, width = 800, height =800)
     temp.update_traces(marker_showscale = False, marker_colorbar_x = 0.9, selector=dict(type='scattermapbox'))
     temp.update_layout(margin = dict(l = 0, r = 0, t = 0, b = 0))
+    
     return temp
 
 
-@app.callback(Output('turb-ph-plot', 'figure'),
+@app.callback(Output('turb-ph-plot', 'figure'),Output("tds-plot", "figure"),
               [Input('turb-ph-update', 'n_intervals')])
 
 
@@ -315,20 +313,8 @@ def update_plots(n):
         annotations=[], overwrite=True
     )
     fig2.update_xaxes(showticklabels=False)
-
     
-    return fig2
-
-
-@app.callback(Output('tds-plot', 'figure'),
-              [Input('tds-update', 'n_intervals')])
-
-def update_maps(n):
-    filename = "dataframe.geojson"
-    gdf = gpd.read_file(open(filename))
     fig1 = px.scatter(gdf, y= ['tds'], x = 'timestamp', width = 400, height =400, color_discrete_sequence = px.colors.qualitative.Pastel2)
-
-
     fig1.update_layout(
         plot_bgcolor=app_color['graph_bg'],
         paper_bgcolor=app_color['graph_bg'],
@@ -336,16 +322,20 @@ def update_maps(n):
         annotations=[], overwrite=True
     )
     fig1.update_xaxes(showticklabels=False)
+
     
-    return (fig1)
+    return fig2, fig1
 
 
 @app.callback(Output('ph-led',"value"),Output('tds-led', "value"),Output('turb-led', "value"),Output('temp-led', "value"),
     [Input("ph-b-update", "n_intervals")])
     
 def update_buttons(n):
-    filename = "dataframe.geojson"
-    gdf = gpd.read_file(open(filename))
+    loaddb3 = load_db3(db_loc)
+    print("did db3 ", n, " times")
+    gdf = gdf_builder(loaddb3)
+    print("did gdf  ", n, " times")
+    gdf.to_file('dataframe.geojson', driver='GeoJSON')
     ph = gdf["ph_v"].iloc[-1]
     tds = gdf["tds"].iloc[-1]
     turb = gdf["t_v"].iloc[-1]

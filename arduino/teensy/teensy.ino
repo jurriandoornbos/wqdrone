@@ -143,7 +143,7 @@ void showNewData() {
         Serial.print(receivedChars);
         Serial.println(">");
         newData = false;
-        powerSensing();
+        
         }
 }
 

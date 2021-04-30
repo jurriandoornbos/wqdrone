@@ -20,16 +20,21 @@ class WQSubscriber(Node):
     def listener_callback(self, msg):
         regex = r'([\-0-9\.]+).*\s([\-0-9\.]+).*Turbidity:\s([\-0-9\.]+).*\s([\-0-9\.]+).*\s([\-0-9\.]+).*\/\s([\-0-9\.]+).'
         line = msg.data
-        begin = line[0:3]
-        if begin == "<Te":
-            t = re.findall(regex,line)[0]
-          
-            t = [float(item)for item in t]           
-            msg = Float64MultiArray()
-            msg.data = t
-            self.sensor_publisher.publish(msg)
-            self.get_logger().info(str(msg.data))
-        
+        try:
+            begin = line[0:3]
+            if begin == "<Te":
+                try:
+                    t = re.findall(regex,line)[0]
+                    
+                    t = [float(item)for item in t]           
+                    msg = Float64MultiArray()
+                    msg.data = t
+                    self.sensor_publisher.publish(msg)
+                    self.get_logger().info(str(msg.data))
+                except:
+                    pass
+        except:
+            pass
     
 
 

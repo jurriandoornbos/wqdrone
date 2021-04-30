@@ -23,7 +23,7 @@ def load_db3(db_loc):
     dist_id = topics.id[topics["name"].str.contains("sonar_dist")]
     
     ### change for other GPS TOPIC ###
-    gps_id = topics.id[topics["name"].str.contains("teensy_fix")]
+    gps_id = topics.id[topics["name"].str.contains("/teensy_fix")]
     
     
     sensor_id = topics.id[topics["name"].str.contains("wq_sensors")]

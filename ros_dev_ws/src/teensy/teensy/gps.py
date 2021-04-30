@@ -46,17 +46,19 @@ class GPSSubscriber(Node):
 
     def listener_callback(self, msg):
         line = msg.data
-    
-        begin = line[0:3]    
-        if begin == "GPS":
-            payload = self.gps_parse(line)  
-            nav_msg = NavSatFix()
-            nav_msg.latitude = payload[0]
-            nav_msg.longitude = payload[1]
-            nav_msg.altitude = payload[2]
-            self.gps_publisher_.publish(nav_msg)
-            self.get_logger().info("Lat: %f"%nav_msg.latitude +" Lon: %f" % nav_msg.longitude)
-    
+        
+        try:
+            begin = line[0:3]    
+            if begin == "GPS":
+                payload = self.gps_parse(line)  
+                nav_msg = NavSatFix()
+                nav_msg.latitude = payload[0]
+                nav_msg.longitude = payload[1]
+                nav_msg.altitude = payload[2]
+                self.gps_publisher.publish(nav_msg)
+                self.get_logger().info("Lat: %f"%nav_msg.latitude +" Lon: %f" % nav_msg.longitude)
+        except: 
+            pass
 
 
 def main(args=None):
