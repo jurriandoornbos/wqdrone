@@ -337,7 +337,11 @@ def update_plots(n):
     [Input("ph-b-update", "n_intervals")])
     
 def update_buttons(n):
-    gdf = load_db3(db_loc)
+    df = load_db3(db_loc)
+    idx = round(n/300*len(df),0)
+    print(len(df),"INDEX", idx)
+    gdf = df.loc[0:idx,:]
+
     gdf.to_csv('dataframe.csv')
     ph = gdf["ph_v"].iloc[-1]
     tds = gdf["tds"].iloc[-1]
