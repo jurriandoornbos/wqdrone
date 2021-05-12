@@ -58,7 +58,7 @@ def load_db3(db_loc):
     # and remerge the dataset back to a nice, tidy DF    
     #df = pd.merge_asof(distdf,gpdf, on = "timestamp")
     df = gpdf
-    df = pd.merge_asof(df, sdf, on = "timestamp")
+    df = pd.merge_asof(df, sdf, on = "timestamp").dropna()
     
     con.close()
     return df
@@ -207,7 +207,7 @@ def html_points(gdf,zoomlvl,out):
        
     return os.path.join(os.getcwd(),"html_folium" , out + ".html")
     
-def html_raster(gdf,zoomlvl, rasterloc,colormap,out):
+def html_raster(gdf, resultcm, zoomlvl = 20):
     '''
     gdf = geodataframe with .lat and .lon
     zoomlvl = int somewhere between 16-20
@@ -223,39 +223,85 @@ def html_raster(gdf,zoomlvl, rasterloc,colormap,out):
     import rasterio 
     import geopandas
     from matplotlib.pyplot import cm
-    
-    if colormap == "Green":
-        resultcm = cm.Greens
-    elif colormap == "Red":
-        resultcm = cm.Reds
-    elif colormap == "Blue":
-        resultcm = cm.Blues
-    else:
-        resultcm = cm.Greys
-
-    r =  rasterio.open(rasterloc)
+    '''
+    r =  raster
     data = r.read(1)
     bounds = r.bounds
 
 
     #Reshape data to form min = 0 and max =1 except when the data consists of zeros
-    if np.all(data==0):
-        image = data
-    else:
-        image = (data - np.min(data))/np.ptp(data)
-
+    image = (data - np.min(data) ) / np.ptp(data)
+    image[image==0] = np.nan
+    '''
     #set up base map
     my_coords = (np.mean(gdf.lat),np.mean(gdf.lon))
     m = folium.Map(location = my_coords, zoom_start =zoomlvl)
-
+    '''
     #show the interpolated inputs
+    
     folium.raster_layers.ImageOverlay(
     image=image,
     bounds=[[bounds.bottom, bounds.left], [bounds.top, bounds.right]],
-    opacity=1,
-    origin='lower',
-    colormap = resultcm).add_to(m)
+    opacity=0.8,
+    origin='upper',
+    colormap = resultcm,
+    pixelated = True).add_to(m)
+    '''
+        #create points from the GPS input data
+    latitudes = gdf.lat
+    longitudes = gdf.lon
+    
+    import branca.colormap as bcm
+    colormap = bcm.LinearColormap(colors=['white','red'], vmin=min(gdf.temp),vmax=max(gdf.temp))
 
-    m.save(os.path.join(os.getcwd(),"html_folium" , out + ".html"))
+        
+    for p, lat, lng in zip(gdf.temp,latitudes, longitudes):
+        folium.vector_layers.Circle(
+          location = [lat, lng], 
+            radius = 2,
+            fill = True,
+        fill_color = colormap(p),
+        color = False,
+        opacity = 10).add_to(m) 
+        
+    m.save("html_folium/temp_idw.html")
 
-    return os.path.join(os.getcwd(),"html_folium" , out + ".html")
+
+
+def idw_interpol(gdf, ext,f):
+    import numpy as np
+    from rasterio.mask import mask
+    import geopandas as gpd
+    from geosardine.interpolate import idw
+    import rasterio as rio
+
+    
+    coords = np.array([[x,y] for x, y in zip(gdf.geometry.x, gdf.geometry.y)])
+    val = np.array(gdf["temp"])
+    temp_idw = idw(coords,
+                   val,
+                  spatial_res = (0.00001,0.00002),
+                  epsg = 4326,
+                extent = ext,
+                  )
+
+    location = "data/temp_idw.tif"
+
+    temp_idw.save(location)
+
+
+    #Add the mask
+    src = rio.open(location)
+    out_image, out_transform = mask(src, f, crop=False)
+    out_meta = src.meta
+    out_meta.update({"driver": "GTiff",
+                     "height": out_image.shape[1],
+                     "width": out_image.shape[2],
+                   "nodata": 0,
+                     "fill_value": np.nan
+                        })
+
+
+    with rio.open("data/temp_idw_masked.tif", "w", **out_meta) as dest:
+        dest.write(out_image)
+    

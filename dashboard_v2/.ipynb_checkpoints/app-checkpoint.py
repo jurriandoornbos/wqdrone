@@ -27,14 +27,15 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import geopandas as gpd
 import pandas as pd
+import rasterio as rio
 
+from matplotlib.pyplot import cm
 
 import plotly.express as px
 
 import os
 
-from scripts.helpers import load_db3, gdf_builder, interkrige, rasterbuilder, html_points, html_raster, reducer
-
+from scripts.helpers import *
 #Set file location names
 rosbagname = "test9_April28"
 
@@ -42,6 +43,15 @@ db_loc = os.path.join(os.path.expanduser('~'),"Documents", "wqdrone","rosbags",r
 
 gdf = gdf_builder(load_db3(db_loc))
 
+extent = gpd.read_file("data\poly_lumen.geojson")
+
+def getFeatures(gdf):
+    """Function to parse features from GeoDataFrame in such a manner that rasterio wants them"""
+    import json
+    return [json.loads(gdf.to_json())['features'][0]['geometry']]
+
+f = getFeatures(extent)
+ext = extent.total_bounds
 
 
 app_color = {"graph_bg": "#082255", "graph_line": "#007ACE"}
@@ -119,18 +129,11 @@ app.layout = html.Div(
                         html.Div(
                             [html.H6("LOCATION", className="graph__title")]
                         ),
-                        dcc.Graph(
-                            id="point-temp-map",
-                            figure=dict(
-                                layout=dict(
-                                    plot_bgcolor=app_color["graph_bg"],
-                                    paper_bgcolor=app_color["graph_bg"],
-                                )
-                            ),
-                        ),
+                        html.Iframe(id = "map_raster", srcDoc = open("./html_folium/temp_idw.html","r").read(),width = "100%", height = "100%"),
+                        
                         dcc.Interval(
                             id="point-temp-update",
-                            interval=3000,
+                            interval=5000,
                             n_intervals=0,
                         ),
                     ],
@@ -267,35 +270,18 @@ app.layout = html.Div(
     className="app__container",
 )
 
-def get_current_time():
-    """ Helper function to get the current time in seconds. """
-
-    now = dt.datetime.now()
-    total_time = (now.hour * 3600) + (now.minute * 60) + (now.second)
-    return total_time
-
-#@app.callback(Output("intermediate-value", 'data'),
-#             [Input('ph-b-update', 'n_intervals')])    
-
-#def redo_data():
-##    gdf = gdf_builder(load_db3(db_loc))
-#    gdf.to_file('dataframe.geojson', driver='GeoJSON')  
-#    return gdf.to_file('dataframe.geojson', driver='GeoJSON')  
-
-@app.callback(Output("point-temp-map", 'figure'),
+@app.callback(Output("map_raster", 'srcDoc'),
              [Input('point-temp-update', 'n_intervals')])
 
 def update_plots(n):
 
     filename = "dataframe.csv"
-    gdf = pd.read_csv(filename)
-    gdf = gdf_builder(gdf)
+    df = pd.read_csv(filename)
     
-    temp = px.scatter_mapbox(gdf, lat="lat", lon = "lon",color = "temp",mapbox_style = bm, zoom = 18, width = 800, height =800)
-    temp.update_traces(marker_showscale = False, marker_colorbar_x = 0.9, selector=dict(type='scattermapbox'))
-    temp.update_layout(margin = dict(l = 0, r = 0, t = 0, b = 0))
     
-    return temp
+    html_raster(df, cm.Greys, zoomlvl = 18)
+    
+    return open("./html_folium/temp_idw.html", 'r').read()
 
 
 @app.callback(Output('turb-ph-plot', 'figure'),Output("tds-plot", "figure"),
@@ -305,8 +291,8 @@ def update_plots(n):
 def update_plots(n):
     filename = "dataframe.csv"
     gdf = pd.read_csv(filename)
-    if len(gdf)>50:
-        gdf = gdf.iloc[-50:-1]
+    if len(gdf)>100:
+        gdf = gdf.iloc[-100:-1]
     else: 
         gdf = gdf
     fig2 = px.line(gdf,y = ['ph_v','t_v'], x = "timestamp", width = 400, height =400, color_discrete_sequence = px.colors.qualitative.Pastel1)
