@@ -207,7 +207,7 @@ def html_points(gdf,zoomlvl,out):
        
     return os.path.join(os.getcwd(),"html_folium" , out + ".html")
     
-def html_raster(gdf, resultcm, zoomlvl = 20):
+def html_raster(gdf, raster, resultcm, zoomlvl = 20):
     '''
     gdf = geodataframe with .lat and .lon
     zoomlvl = int somewhere between 16-20
@@ -223,20 +223,20 @@ def html_raster(gdf, resultcm, zoomlvl = 20):
     import rasterio 
     import geopandas
     from matplotlib.pyplot import cm
-    '''
-    r =  raster
-    data = r.read(1)
-    bounds = r.bounds
+    
+ 
+    data = raster.read(1)
+    bounds = raster.bounds
 
 
     #Reshape data to form min = 0 and max =1 except when the data consists of zeros
     image = (data - np.min(data) ) / np.ptp(data)
     image[image==0] = np.nan
-    '''
+    
     #set up base map
     my_coords = (np.mean(gdf.lat),np.mean(gdf.lon))
     m = folium.Map(location = my_coords, zoom_start =zoomlvl)
-    '''
+    
     #show the interpolated inputs
     
     folium.raster_layers.ImageOverlay(
@@ -246,16 +246,13 @@ def html_raster(gdf, resultcm, zoomlvl = 20):
     origin='upper',
     colormap = resultcm,
     pixelated = True).add_to(m)
-    '''
-        #create points from the GPS input data
-    latitudes = gdf.lat
-    longitudes = gdf.lon
     
+      
     import branca.colormap as bcm
     colormap = bcm.LinearColormap(colors=['white','red'], vmin=min(gdf.temp),vmax=max(gdf.temp))
 
         
-    for p, lat, lng in zip(gdf.temp,latitudes, longitudes):
+    for p, lat, lng in zip(gdf.temp[::5],gdf.lat[::5], gdf.lon[::5]):
         folium.vector_layers.Circle(
           location = [lat, lng], 
             radius = 2,
@@ -268,7 +265,7 @@ def html_raster(gdf, resultcm, zoomlvl = 20):
 
 
 
-def idw_interpol(gdf, ext,f):
+def idw_interpol(df, ext,f):
     import numpy as np
     from rasterio.mask import mask
     import geopandas as gpd
@@ -276,13 +273,14 @@ def idw_interpol(gdf, ext,f):
     import rasterio as rio
 
     
-    coords = np.array([[x,y] for x, y in zip(gdf.geometry.x, gdf.geometry.y)])
-    val = np.array(gdf["temp"])
+    coords = np.array([[x,y] for x, y in zip(df.lon, df.lat)])
+    val = np.array(df["temp"])
     temp_idw = idw(coords,
                    val,
-                  spatial_res = (0.00001,0.00002),
+                  spatial_res = (0.0001,0.0001),
                   epsg = 4326,
                 extent = ext,
+                   power = 4
                   )
 
     location = "data/temp_idw.tif"

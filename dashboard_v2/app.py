@@ -277,9 +277,10 @@ def update_plots(n):
 
     filename = "dataframe.csv"
     df = pd.read_csv(filename)
-    
-    
-    html_raster(df, cm.Greys, zoomlvl = 18)
+
+    idw_interpol(df, ext,f)
+    src = rio.open("data/temp_idw_masked.tif")
+    html_raster(df, src, cm.Reds, zoomlvl = 18)
     
     return open("./html_folium/temp_idw.html", 'r').read()
 
