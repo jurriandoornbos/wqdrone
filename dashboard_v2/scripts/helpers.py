@@ -249,7 +249,7 @@ def html_raster(gdf, raster, resultcm, zoomlvl = 20):
     
       
     import branca.colormap as bcm
-    colormap = bcm.LinearColormap(colors=['white','red'], vmin=min(gdf.temp),vmax=max(gdf.temp))
+    colormap = bcm.LinearColormap(colors=['gray','black'], vmin=min(gdf.temp),vmax=max(gdf.temp))
 
         
     for p, lat, lng in zip(gdf.temp[::5],gdf.lat[::5], gdf.lon[::5]):

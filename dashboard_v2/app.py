@@ -37,13 +37,13 @@ import os
 
 from scripts.helpers import *
 #Set file location names
-rosbagname = "test9_April28"
-
-db_loc = os.path.join(os.path.expanduser('~'),"Documents", "wqdrone","rosbags",rosbagname , rosbagname+"_0.db3")
+rosbagname = "test5_May14"
+os.environ["GDAL_DATA"] = '/home/pop/.conda/envs/interpol/lib/python3.8/site-packages/rasterio/gdal_data'
+db_loc = os.path.join(os.path.expanduser('~'),rosbagname , rosbagname+"_0.db3")
 
 gdf = gdf_builder(load_db3(db_loc))
 
-extent = gpd.read_file("data\poly_lumen.geojson")
+extent = gpd.read_file("data/poly_lumen.geojson")
 
 def getFeatures(gdf):
     """Function to parse features from GeoDataFrame in such a manner that rasterio wants them"""

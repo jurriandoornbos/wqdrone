@@ -29,8 +29,7 @@ int counter =0;
 
 
 #define SCOUNT  30           // sum of sample point
-
-//#define V2Pin A2
+#define V2Pin A2
 //#define V1Pin A1
 //#define V0Pin A0
 
@@ -63,11 +62,11 @@ void loop(){
   // Read the voltage sensors
   //int sensorValue0 = analogRead(V0Pin);
   //int sensorValue1 = analogRead(V1Pin);
-  //int sensorValue2 = analogRead(V2Pin);
+  int sensorValue2 = analogRead(V2Pin);
   // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
   float voltage0 = 0.0; //sensorValue0 * (5.0 / 1023.0) * 5;
   float voltage1 = 0.0; //sensorValue1 * (5.0 / 1023.0) * 5;
-  float voltage2 = 0.0; //sensorValue2 * (5.0 / 1023.0) * 5;
+  float voltage2 =  sensorValue2 * (5.0 / 1023.0) * 5;
 
 
   // Read the Current Sensor ACS712
