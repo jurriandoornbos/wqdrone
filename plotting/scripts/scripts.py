@@ -44,8 +44,9 @@ def parse_df(topics, msgs, topic, parser, cols = ["volts", "amps"]):
     import os
     #find the specific topic_id that the topic has gained in the bag
     t_id = topics.id[topics["name"].str.contains(topic)]
+    
     #subselect this data out of all the msgs
-    df1 = msgs.loc[msgs["topic_id"].isin([t_id])].reset_index()
+    df1 = msgs.loc[msgs["topic_id"].isin(t_id)].reset_index()
     #apply the conversion from bytes to actual numbers
     df1[topic] = df1["data"].apply(parser)
     #Create different columns from the lists created by the parser
